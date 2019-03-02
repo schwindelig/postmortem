@@ -48,6 +48,15 @@ namespace PostMortem.Core
             DumpMemoryRegions(runtime);
         }
 
+        private void DumpGcHandles(ClrRuntime runtime)
+        {
+            foreach (var handle in runtime.EnumerateHandles())
+            {
+                var objectType = runtime.Heap.GetObjectType(handle.Object).Name;
+                Log.Information("{address,12:X} {object,12:X} {type,12} {objectType}", handle.Address, handle.Object, handle.Type, objectType);
+            }
+        }
+
         private static void DumpMemoryRegions(ClrRuntime runtime)
         {
             Log.Information("Memory regions:");
