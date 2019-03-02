@@ -7,7 +7,7 @@ using PostMortem.Core.Exceptions;
 using PostMortem.Core.Results;
 using Serilog;
 
-namespace PostMortem.Core
+namespace PostMortem.Core.Analyse
 {
     public class Analyser : IDisposable
     {
@@ -332,6 +332,9 @@ namespace PostMortem.Core
         private ClrRuntime LoadDump(string path)
         {
             Log.Verbose("Loading Dump");
+
+            this._dataTarget?.Dispose();
+            this._dataTarget = null;
 
             if (string.IsNullOrWhiteSpace(path))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(path));

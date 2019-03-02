@@ -22,5 +22,11 @@ namespace PostMortem
             HelpText = "Directory where the analysis result should be saved",
             Required = true)]
         public string OutputDirectory { get; set; }
+
+        [Option(
+            's', "p2",
+            HelpText = "Path to the second memory dump",
+            Required = false)]
+        public string Path2 { get; set; }
     }
 }

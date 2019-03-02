@@ -2,6 +2,7 @@
 using System.IO;
 using CommandLine;
 using PostMortem.Core;
+using PostMortem.Core.Analyse;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -20,17 +21,25 @@ namespace PostMortem
                 {
                     using (var analyser = new Analyser())
                     {
-                        var startTimeStamp = DateTime.Now.ToString("yyyyMMddddHHmmss");
+                        //var startTimeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
 
-                        var result = analyser.RunAnalysis(new AnalyserOptions
+                        var resultLeft = analyser.RunAnalysis(new AnalyserOptions
                         {
                             Path = options.Path
                         });
 
-                        var targetPath = Path.Combine(options.OutputDirectory, $"{startTimeStamp}.json");
+                        if (!string.IsNullOrWhiteSpace(options.Path2))
+                        {
+                            var resultRight = analyser.RunAnalysis(new AnalyserOptions
+                            {
+                                Path = options.Path2
+                            });
+                        }
 
-                        new Exporter().ExportData(result, targetPath);
-                        Log.Information("Saved result to {targetPath}", targetPath);
+                        //var targetPath = Path.Combine(options.OutputDirectory, $"{startTimeStamp}.json");
+
+                        //new Exporter().ExportData(result, targetPath);
+                        //Log.Information("Saved result to {targetPath}", targetPath);
                     }
                 }
                 catch (Exception exception)

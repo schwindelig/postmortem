@@ -1,4 +1,4 @@
-﻿namespace PostMortem.Core
+﻿namespace PostMortem.Core.Analyse
 {
     public class AnalyserOptions
     {

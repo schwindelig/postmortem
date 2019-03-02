@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using PostMortem.Core.Exceptions;
 using Serilog;
 
-namespace PostMortem.Core
+namespace PostMortem.Core.Analyse
 {
     public class Exporter
     {
