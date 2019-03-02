@@ -27,9 +27,9 @@ namespace PostMortem.Core
         {
             if (string.IsNullOrWhiteSpace(options.Path)) throw new InvalidOptionsException("No path defined");
 
-            if(!File.Exists(options.Path)) throw new InvalidOptionsException($"Dump File does not exist: {options.Path}");
+            if (!File.Exists(options.Path)) throw new InvalidOptionsException($"Dump File does not exist: {options.Path}");
 
-            Log.Verbose("Analyser Options valid: {@options}", options);
+            Log.Verbose("Analyser Options are valid: {@options}", options);
         }
     }
 }
