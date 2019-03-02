@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using ClrMD.Extensions;
 using Microsoft.Diagnostics.Runtime;
 using PostMortem.Core.Exceptions;
 using Serilog;
@@ -42,14 +43,92 @@ namespace PostMortem.Core
                 throw;
             }
 
-            DumpRuntimeInfo(runtime);
-            DumpAppDomains(runtime);
+            //DumpRuntimeInfo(runtime);
+            //DumpAppDomains(runtime);
             DumpThreads(runtime);
-            DumpMemoryRegions(runtime);
+            //DumpMemoryRegions(runtime);
+            //DumpHeapSegments(runtime);
+            //DumpHeapBalance(runtime);
+            //DumpTopObjects(runtime);
+        }
+
+        private static void DumpTopObjects(ClrRuntime runtime)
+        {
+            Log.Information("Top Objects:");
+            if (!runtime.Heap.CanWalkHeap) throw new CannotWalkHeapException("Unable to walk Heap. The dump might have been taken during a GC");
+
+            var objectAddresses = runtime.Heap.EnumerateObjectAddresses();
+            var t = objectAddresses
+                .Select(objectAddress =>
+                    {
+                        var type = runtime.Heap.GetObjectType(objectAddress);
+                        if (type == null) return null; //throw new HeapCorruptedException($"Failed to get type of object at address {objectAddress:X}. Heap might be corrupted");
+
+                        var size = type.GetSize(objectAddress);
+
+                        return new
+                        {
+                            Type = type,
+                            Size = size
+                        };
+                    })
+                .Where(arg => arg != null)
+                .GroupBy(arg => arg.Type, (type, enumerable) =>
+                {
+                    var enumerable1 = enumerable.ToList();
+                    return new
+                    {
+                        Type = type,
+                        enumerable1.Count,
+                        TotalSize = enumerable1.Select(arg => arg.Size).Aggregate(0UL, (a, b) => a + b)
+                    };
+                })
+                .OrderByDescending(arg => arg.TotalSize)
+                .Take(100);
+
+            foreach (var group in t)
+            {
+                Log.Information("{type}: {count} instances - {totalSize:n0} bytes", group.Type, group.Count, group.TotalSize);
+            }
+        }
+
+        private static void DumpHeapBalance(ClrRuntime runtime)
+        {
+            Log.Information("Heap Balance:");
+            foreach (var item in (from seg in runtime.Heap.Segments
+                group seg by seg.ProcessorAffinity into g
+                orderby g.Key
+                select new
+                {
+                    Heap = g.Key,
+                    Size = g.Sum(p => (uint)p.Length)
+                }))
+            {
+                Log.Information("Heap {heap,2}: {size:n0} bytes", item.Heap, item.Size);
+            }
+        }
+
+        private static void DumpHeapSegments(ClrRuntime runtime)
+        {
+            Log.Information("Heap Segments:");
+            Log.Information("{start,12} {end,12} {committedEnd,12} {reservedEnd,12} {heap,4} {type}", "Start", "End", "CommittedEnd", "ReservedEnd", "Heap", "Type");
+            foreach (var segment in runtime.Heap.Segments)
+            {
+                string type;
+                if (segment.IsEphemeral)
+                    type = "Ephemeral";
+                else if (segment.IsLarge)
+                    type = "Large";
+                else
+                    type = "Gen2";
+
+                Log.Information("{start,12:X} {end,12:X} {committedEnd,12:X} {reservedEnd,12:X} {processorAffinity,4} {type}", segment.Start, segment.End, segment.CommittedEnd, segment.ReservedEnd, segment.ProcessorAffinity, type);
+            }
         }
 
         private void DumpGcHandles(ClrRuntime runtime)
         {
+            Log.Information("GC Handles:");
             foreach (var handle in runtime.EnumerateHandles())
             {
                 var objectType = runtime.Heap.GetObjectType(handle.Object).Name;
@@ -78,7 +157,8 @@ namespace PostMortem.Core
 
         private static void DumpAppDomains(ClrRuntime runtime)
         {
-            Log.Information("App domain(s): {domains}", runtime.AppDomains.Count);
+            Log.Information("App Domains:");
+            Log.Information("App Domain(s): {domains}", runtime.AppDomains.Count);
             foreach (var appDomain in runtime.AppDomains)
             {
                 Log.Information("App Domain {id}: {name}", appDomain.Id, appDomain.Name);
@@ -88,6 +168,7 @@ namespace PostMortem.Core
 
         private static void DumpThreads(ClrRuntime runtime)
         {
+            Log.Information("Threads:");
             Log.Information("Threads: {threadCount} ({aliveThreadCount} alive)", runtime.Threads.Count, runtime.Threads.Count(thread => thread.IsAlive));
             foreach (var thread in runtime.Threads)
             {
@@ -109,6 +190,7 @@ namespace PostMortem.Core
 
         private static void DumpRuntimeInfo(ClrRuntime runtime)
         {
+            Log.Information("Runtime information:");
             Log.Information("Pointer Size: {pointerSize} bytes", runtime.PointerSize);
             Log.Information("Server Garbage Collector: {serverGc}", runtime.ServerGC);
             Log.Information("Heap Count: {heapCount}", runtime.HeapCount);
