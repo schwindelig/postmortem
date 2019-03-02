@@ -42,9 +42,9 @@ namespace PostMortem
             var levelSwitch = new LoggingLevelSwitch(isVerbose ? LogEventLevel.Verbose : LogEventLevel.Information);
 
             Log.Logger = new LoggerConfiguration()
-                            .MinimumLevel.ControlledBy(levelSwitch)
-                            .WriteTo.Console()
-                            .CreateLogger();
+                .MinimumLevel.ControlledBy(levelSwitch)
+                .WriteTo.Console()
+                .CreateLogger();
 
             Log.Verbose("Initialized logger");
         }
