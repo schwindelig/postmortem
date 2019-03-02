@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Diagnostics.Runtime;
 using PostMortem.Core.Exceptions;
+using PostMortem.Core.Results;
 using Serilog;
 
 namespace PostMortem.Core
@@ -11,7 +13,7 @@ namespace PostMortem.Core
     {
         private DataTarget _dataTarget;
 
-        public void RunAnalysis(AnalyserOptions options)
+        public AnalysisResult RunAnalysis(AnalyserOptions options)
         {
             if (options == null) throw new ArgumentNullException(nameof(options));
 
@@ -42,23 +44,33 @@ namespace PostMortem.Core
                 throw;
             }
 
-            DumpRuntimeInfo(runtime);
-            DumpAppDomains(runtime);
-            DumpThreads(runtime);
-            DumpMemoryRegions(runtime);
-            DumpHeapSegments(runtime);
-            DumpHeapBalance(runtime);
-            DumpTopObjects(runtime);
+            var analysisResult = new AnalysisResult
+            {
+                RuntimeInfo = GetRuntimeInfo(runtime),
+                AppDomains = GetAppDomains(runtime),
+                Threads = GetThreads(runtime),
+                MemoryRegions = GetMemoryRegions(runtime),
+                HeapSegments = GetHeapSegments(runtime),
+                HeapBalance = GetHeapBalance(runtime),
+                Objects = GetObjects(runtime)
+            };
+
+            Log.Verbose("Finished analysis");
+
+            return analysisResult;
         }
 
-        private static void DumpTopObjects(ClrRuntime runtime)
+        private static IEnumerable<ObjectInfo> GetObjects(ClrRuntime runtime)
         {
-            Log.Information("Top Objects:");
+            Log.Verbose("Getting objects");
+
             if (!runtime.Heap.CanWalkHeap)
+            {
                 throw new CannotWalkHeapException("Unable to walk Heap. The dump might have been taken during a GC");
+            }
 
             var objectAddresses = runtime.Heap.EnumerateObjectAddresses();
-            var t = objectAddresses
+            var objectInfos = objectAddresses
                 .Select(objectAddress =>
                 {
                     var type = runtime.Heap.GetObjectType(objectAddress);
@@ -68,51 +80,38 @@ namespace PostMortem.Core
 
                     var size = type.GetSize(objectAddress);
 
-                    return new
+                    return new ObjectInfo
                     {
-                        Type = type,
+                        TypeName = type.Name,
                         Size = size
                     };
                 })
                 .Where(arg => arg != null)
-                .GroupBy(arg => arg.Type, (type, enumerable) =>
-                {
-                    var enumerable1 = enumerable.ToList();
-                    return new
-                    {
-                        Type = type,
-                        enumerable1.Count,
-                        TotalSize = enumerable1.Select(arg => arg.Size).Aggregate(0UL, (a, b) => a + b)
-                    };
-                })
-                .OrderByDescending(arg => arg.TotalSize)
-                .Take(100);
+                .ToList();
 
-            foreach (var group in t)
-                Log.Information("{type}: {count} instances - {totalSize:n0} bytes", group.Type, group.Count,
-                    group.TotalSize);
+            return objectInfos;
         }
 
-        private static void DumpHeapBalance(ClrRuntime runtime)
+        private static IEnumerable<HeapBalanceInfo> GetHeapBalance(ClrRuntime runtime)
         {
-            Log.Information("Heap Balance:");
-            foreach (var item in from seg in runtime.Heap.Segments
-                group seg by seg.ProcessorAffinity
-                into g
-                orderby g.Key
-                select new
+            Log.Verbose("Getting Heap Balance");
+
+            var heapBalanceInfos = runtime.Heap.Segments.GroupBy(seg => seg.ProcessorAffinity)
+                .OrderBy(group => group.Key)
+                .Select(group => new HeapBalanceInfo
                 {
-                    Heap = g.Key,
-                    Size = g.Sum(p => (uint) p.Length)
-                })
-                Log.Information("Heap {heap,2}: {size:n0} bytes", item.Heap, item.Size);
+                    Heap = group.Key,
+                    Size = group.Sum(p => (uint) p.Length)
+                }).ToList();
+
+            return heapBalanceInfos;
         }
 
-        private static void DumpHeapSegments(ClrRuntime runtime)
+        private static IEnumerable<HeapSegmentInfo> GetHeapSegments(ClrRuntime runtime)
         {
-            Log.Information("Heap Segments:");
-            Log.Information("{start,12} {end,12} {committedEnd,12} {reservedEnd,12} {heap,4} {type}", "Start", "End",
-                "CommittedEnd", "ReservedEnd", "Heap", "Type");
+            Log.Verbose("Getting Heap Segments");
+
+            var heapSegmentInfos = new List<HeapSegmentInfo>();
             foreach (var segment in runtime.Heap.Segments)
             {
                 string type;
@@ -123,11 +122,17 @@ namespace PostMortem.Core
                 else
                     type = "Gen2";
 
-                Log.Information(
-                    "{start,12:X} {end,12:X} {committedEnd,12:X} {reservedEnd,12:X} {processorAffinity,4} {type}",
-                    segment.Start, segment.End, segment.CommittedEnd, segment.ReservedEnd, segment.ProcessorAffinity,
-                    type);
+                heapSegmentInfos.Add(new HeapSegmentInfo
+                {
+                    Start = segment.Start,
+                    CommittedEnd = segment.End,
+                    ReservedEnd = segment.ReservedEnd,
+                    Heap = segment.ProcessorAffinity,
+                    Type = type
+                });
             }
+
+            return heapSegmentInfos;
         }
 
         private void DumpGcHandles(ClrRuntime runtime)
@@ -141,55 +146,81 @@ namespace PostMortem.Core
             }
         }
 
-        private static void DumpMemoryRegions(ClrRuntime runtime)
+        private static IEnumerable<MemoryRegionInfo> GetMemoryRegions(ClrRuntime runtime)
         {
-            Log.Information("Memory regions:");
-            foreach (var region in from r in runtime.EnumerateMemoryRegions()
-                where r.Type != ClrMemoryRegionType.ReservedGCSegment
-                group r by r.Type
-                into g
-                let total = g.Sum(p => (uint) p.Size)
-                orderby total descending
-                select new
+            Log.Verbose("Getting Memory Regions");
+
+            var memoryRegionInfos = runtime.EnumerateMemoryRegions()
+                .Where(r => r.Type != ClrMemoryRegionType.ReservedGCSegment)
+                .GroupBy(r => r.Type)
+                .Select(group => new
                 {
-                    TotalSize = total,
-                    Count = g.Count(),
-                    Type = g.Key
+                    g = group,
+                    total = group.Sum(p => (uint) p.Size)
                 })
-                Log.Information("{count,6:n0} {totalSize,12:n0} {type}", region.Count, region.TotalSize, region.Type);
+                .OrderByDescending(t => t.total)
+                .Select(t => new MemoryRegionInfo
+                {
+                    TotalSize = t.total,
+                    Count = t.g.Count(),
+                    Type = t.g.Key
+                })
+                .ToList();
+
+            return memoryRegionInfos;
         }
 
-        private static void DumpAppDomains(ClrRuntime runtime)
+        private static IEnumerable<AppDomainInfo> GetAppDomains(ClrRuntime runtime)
         {
-            Log.Information("App Domains:");
-            Log.Information("App Domain(s): {domains}", runtime.AppDomains.Count);
-            foreach (var appDomain in runtime.AppDomains)
+            Log.Verbose("Getting App Domains");
+
+            return runtime.AppDomains.Select(appDomain => new AppDomainInfo
             {
-                Log.Information("App Domain {id}: {name}", appDomain.Id, appDomain.Name);
-                Log.Information("Loaded modules (App Domain {id}): {modules}", appDomain.Id, appDomain.Modules);
-            }
+                Name = appDomain.Name,
+                Modules = appDomain.Modules.Select(m => m.Name)
+            }).ToList();
         }
 
-        private static void DumpThreads(ClrRuntime runtime)
+        private static IEnumerable<ThreadInfo> GetThreads(ClrRuntime runtime)
         {
-            Log.Information("Threads:");
-            Log.Information("Threads: {threadCount} ({aliveThreadCount} alive)", runtime.Threads.Count,
-                runtime.Threads.Count(thread => thread.IsAlive));
+            Log.Verbose("Getting Threads");
+
+            var threadInfos = new List<ThreadInfo>();
             foreach (var thread in runtime.Threads)
             {
+                ExceptionInfo exceptionInfo = null;
                 var exception = thread.CurrentException;
                 if (exception != null)
-                    Log.Information("Exception in thread {threadId:X}: {exception}", thread.OSThreadId, exception);
+                {
+                    exceptionInfo = new ExceptionInfo
+                    {
+                        Message = exception.Message,
+                        HResult = exception.HResult
+                    };
+                }
 
-                if (!thread.IsAlive) continue;
+                var stackFrameInfos = new List<StackFrameInfo>();
+                if (thread.IsAlive)
+                {
+                    stackFrameInfos.AddRange(thread.StackTrace.Select(frame =>
+                        new StackFrameInfo
+                        {
+                            StackPointer = frame.StackPointer,
+                            InstructionPointer = frame.InstructionPointer,
+                            DisplayString = frame.DisplayString
+                        }));
+                }
 
-                Log.Information("Thread {threadId:X} stack trace:", thread.OSThreadId);
-                foreach (var frame in thread.StackTrace)
-                    Log.Information("{stackPointer,12:X} {instructionPointer,12:X} {frame}", frame.StackPointer,
-                        frame.InstructionPointer, frame);
-
-                //DumpStack(runtime, thread); // This will print every value
+                threadInfos.Add(new ThreadInfo
+                {
+                    IsAlive = thread.IsAlive,
+                    OsThreadId = thread.OSThreadId,
+                    ExceptionInfo = exceptionInfo,
+                    StackFrameInfos = stackFrameInfos
+                });
             }
+
+            return threadInfos;
         }
 
         private static void DumpStack(ClrRuntime runtime, ClrThread thread)
@@ -213,13 +244,13 @@ namespace PostMortem.Core
             Log.Information("Stack objects:");
 
             // Walk each pointer aligned address.  Ptr is a stack address.
-            for (var ptr = start; ptr <= stop; ptr += (ulong)runtime.PointerSize)
+            for (var ptr = start; ptr <= stop; ptr += (ulong) runtime.PointerSize)
             {
                 // Read the value of this pointer.  If we fail to read the memory, break.  The
                 // stack region should be in the crash dump.
                 if (!runtime.ReadPointer(ptr, out var obj))
                     break;
- 
+
                 // We check to see if this address is a valid object by simply calling
                 // GetObjectType.  If that returns null, it's not an object.
                 var type = heap.GetObjectType(obj);
@@ -244,12 +275,16 @@ namespace PostMortem.Core
             }
         }
 
-        private static void DumpRuntimeInfo(ClrRuntime runtime)
+        private static RuntimeInfo GetRuntimeInfo(ClrRuntime runtime)
         {
-            Log.Information("Runtime information:");
-            Log.Information("Pointer Size: {pointerSize} bytes", runtime.PointerSize);
-            Log.Information("Server Garbage Collector: {serverGc}", runtime.ServerGC);
-            Log.Information("Heap Count: {heapCount}", runtime.HeapCount);
+            Log.Verbose("Getting Runtime Info");
+
+            return new RuntimeInfo
+            {
+                PointerSize = runtime.PointerSize,
+                ServerGarbageCollector = runtime.ServerGC,
+                HeapCount = runtime.HeapCount
+            };
         }
 
         private static void ValidateOptions(AnalyserOptions options)
@@ -284,8 +319,9 @@ namespace PostMortem.Core
                     output = field.GetValue(obj, inner).ToString();
                 else
                     output = addr.ToString("X");
-                    Log.Information("  +{offset,2:X2} {typeName} {baseName}{fieldName} = {output}", field.Offset + offset, field.Type.Name, baseName,
-                        field.Name, output);
+                Log.Information("  +{offset,2:X2} {typeName} {baseName}{fieldName} = {output}", field.Offset + offset,
+                    field.Type.Name, baseName,
+                    field.Name, output);
 
                 // Recurse for structs.
                 if (field.ElementType == ClrElementType.Struct)
@@ -295,6 +331,8 @@ namespace PostMortem.Core
 
         private ClrRuntime LoadDump(string path)
         {
+            Log.Verbose("Loading Dump");
+
             if (string.IsNullOrWhiteSpace(path))
                 throw new ArgumentException("Value cannot be null or whitespace.", nameof(path));
 

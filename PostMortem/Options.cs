@@ -16,5 +16,11 @@ namespace PostMortem
             Required = false,
             Default = false)]
         public bool Verbose { get; set; }
+
+        [Option(
+            'o', "output-dir",
+            HelpText = "Directory where the analysis result should be saved",
+            Required = true)]
+        public string OutputDirectory { get; set; }
     }
 }

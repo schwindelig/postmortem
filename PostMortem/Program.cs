@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using CommandLine;
 using PostMortem.Core;
 using Serilog;
@@ -19,10 +20,17 @@ namespace PostMortem
                 {
                     using (var analyser = new Analyser())
                     {
-                        analyser.RunAnalysis(new AnalyserOptions
+                        var startTimeStamp = DateTime.Now.ToString("yyyyMMddddHHmmss");
+
+                        var result = analyser.RunAnalysis(new AnalyserOptions
                         {
                             Path = options.Path
                         });
+
+                        var targetPath = Path.Combine(options.OutputDirectory, $"{startTimeStamp}.json");
+
+                        new Exporter().ExportData(result, targetPath);
+                        Log.Information("Saved result to {targetPath}", targetPath);
                     }
                 }
                 catch (Exception exception)

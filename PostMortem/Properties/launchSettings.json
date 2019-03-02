@@ -2,7 +2,7 @@
   "profiles": {
     "PostMortem": {
       "commandName": "Project",
-      "commandLineArgs": "-v -p C:\\Temp\\swt\\w3wp-3-processing-stuck\\w3wp.dmp"
+      "commandLineArgs": "-v -p C:\\Temp\\swt\\w3wp-3-processing-stuck\\w3wp.dmp -o C:\\Temp\\postmortem\\results"
     }
   }
 }
