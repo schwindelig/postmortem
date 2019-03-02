@@ -188,7 +188,7 @@ namespace PostMortem.Core
                     Log.Information("{stackPointer,12:X} {instructionPointer,12:X} {frame}", frame.StackPointer,
                         frame.InstructionPointer, frame);
 
-                DumpStack(runtime, thread);
+                //DumpStack(runtime, thread); // This will print every value
             }
         }
 
@@ -219,8 +219,7 @@ namespace PostMortem.Core
                 // stack region should be in the crash dump.
                 if (!runtime.ReadPointer(ptr, out var obj))
                     break;
-
-                // 003DF2A4 
+ 
                 // We check to see if this address is a valid object by simply calling
                 // GetObjectType.  If that returns null, it's not an object.
                 var type = heap.GetObjectType(obj);
