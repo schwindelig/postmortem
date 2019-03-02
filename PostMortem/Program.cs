@@ -9,7 +9,7 @@ namespace PostMortem
 {
     public class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Parser.Default.ParseArguments<Options>(args).WithParsed(options =>
             {
@@ -17,11 +17,13 @@ namespace PostMortem
 
                 try
                 {
-                    var analyser = new Analyser();
-                    analyser.RunAnalysis(new AnalyserOptions
+                    using (var analyser = new Analyser())
                     {
-                        Path = options.Path
-                    });
+                        analyser.RunAnalysis(new AnalyserOptions
+                        {
+                            Path = options.Path
+                        });
+                    }
                 }
                 catch (Exception exception)
                 {

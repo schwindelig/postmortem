@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Diagnostics.Runtime" Version="1.0.3" />
     <PackageReference Include="Serilog" Version="2.8.0" />
   </ItemGroup>
 
