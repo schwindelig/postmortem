@@ -60,5 +60,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PostMortem.Core\PostMortem.Core.csproj">
+      <Project>{2C45100C-9063-4D84-ACBF-1500179C1549}</Project>
+      <Name>PostMortem.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

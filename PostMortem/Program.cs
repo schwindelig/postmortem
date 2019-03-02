@@ -1,5 +1,6 @@
 ﻿using System;
 using CommandLine;
+using PostMortem.Core;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -16,7 +17,11 @@ namespace PostMortem
 
                 try
                 {
-                    throw new NotImplementedException();
+                    var analyser = new Analyser();
+                    analyser.RunAnalysis(new AnalyserOptions
+                    {
+                        Path = options.Path
+                    });
                 }
                 catch (Exception exception)
                 {
