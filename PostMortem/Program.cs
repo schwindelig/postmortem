@@ -3,6 +3,7 @@ using System.IO;
 using CommandLine;
 using PostMortem.Core;
 using PostMortem.Core.Analyse;
+using PostMortem.Core.Report;
 using Serilog;
 using Serilog.Core;
 using Serilog.Events;
@@ -27,6 +28,7 @@ namespace PostMortem
                         {
                             Path = options.Path
                         });
+                        new Reporter().GenerateReport(resultLeft,options.OutputDirectory);
 
                         if (!string.IsNullOrWhiteSpace(options.Path2))
                         {

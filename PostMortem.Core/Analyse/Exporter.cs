@@ -7,9 +7,9 @@ namespace PostMortem.Core.Analyse
 {
     public class Exporter
     {
-        public void ExportData(object data, string path)
+        public void ExportJson(object data, string path)
         {
-            Log.Verbose("Exporting data to {path}", path);
+            Log.Verbose("Exporting data as JSON to {path}", path);
 
             if (File.Exists(path))
             {
@@ -20,7 +20,20 @@ namespace PostMortem.Core.Analyse
             {
                 var serializer = new JsonSerializer();
                 serializer.Serialize(textWriter, data);
+                textWriter.Flush();
             }
+        }
+
+        public void ExportFile(string data, string path)
+        {
+            Log.Verbose("Exporting data to {path}", path);
+
+            if (File.Exists(path))
+            {
+                throw new FileAlreadyExistsException($"File at {path} already exists");
+            }
+
+            File.WriteAllText(path, data);
         }
     }
 }

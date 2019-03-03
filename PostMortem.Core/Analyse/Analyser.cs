@@ -278,7 +278,6 @@ namespace PostMortem.Core.Analyse
         private static RuntimeInfo GetRuntimeInfo(ClrRuntime runtime)
         {
             Log.Verbose("Getting Runtime Info");
-
             return new RuntimeInfo
             {
                 PointerSize = runtime.PointerSize,
