@@ -1,6 +1,6 @@
 # PostMortem
 
-A simple and basic analyzer for .net memory dumps containing managed code. Reports are provided as `.md` and `.html` files.
+A simple and basic analyzer for memory dumps containing managed code. Reports are provided as `.md` and `.html` files.
 
 The console app is targeting .net core 2.2, while the `PostMorem.Core` and `PostMorem.Markdown` libraries target .net standard 2.0.
 
