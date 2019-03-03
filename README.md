@@ -20,6 +20,12 @@ Examples are based on memory dumps generated on the [aspnet-crash website](https
 
 - Analysis Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/stackoverflow/e397f00b-1516-4995-9e43-b2c456429871-analysis-report.html) | [Markdown](docs/example-reports/stackoverflow/e397f00b-1516-4995-9e43-b2c456429871-analysis-report.md)
 
+### Memory Leak (Caused by not disposing `MemoryStream`s and `XmlSerializer`s)
+
+- Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/626456c3-6685-4828-bf75-2d3e16f64c5f-analysis-report.html) | [Markdown](docs/example-reports/memoryleak/626456c3-6685-4828-bf75-2d3e16f64c5f-analysis-report.md)
+- Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/abf0841f-11ad-4cf3-88c8-530c9af3c783-analysis-report.html) | [Markdown](docs/example-reports/memoryleak/abf0841f-11ad-4cf3-88c8-530c9af3c783-analysis-report.md)
+- Compare Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/8a25287f-1c1e-43a6-81d7-1f98a8e2c452-compare-report.html) | [Markdown](docs/example-reports/memoryleak/8a25287f-1c1e-43a6-81d7-1f98a8e2c452-compare-report.md)
+
 ## Libraries used
 
 - [ClrMD](https://github.com/Microsoft/dotnet-samples/tree/master/Microsoft.Diagnostics.Runtime/CLRMD)

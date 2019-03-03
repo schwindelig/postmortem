@@ -1,0 +1,1213 @@
+# PostMortem Analysis Report for ``FULLDUMP_HangMode_w3wp.exe__2850_2019-03-03_21-27-42-750_a9cc.dmp``
+Report generated: Sonntag, 3. März 2019 21:29:27
+
+## General Information
+Dump File Creation Time: Sonntag, 3. März 2019 21:27:42
+
+Dump File Path: ``C:\Temp\crash-analysis\20190303_212742_Hang_Mode_leak1\FULLDUMP_HangMode_w3wp.exe__2850_2019-03-03_21-27-42-750_a9cc.dmp``
+
+## Runtime Info
+Pointer Size|Heap Count|Server Garbage Collector
+|:---|:---|:---|
+|8|8|True
+|
+## Memory Regions
+Total Size|Count|Type
+|:---|:---|:---|
+|83’755’008|          16|``GCSegment``
+|2’801’664|          39|``LowFrequencyLoaderHeap``
+|1’073’152|          18|``HighFrequencyLoaderHeap``
+|507’904|           3|``ResolveHeap``
+|319’488|           3|``DispatchHeap``
+|167’936|           5|``StubHeap``
+|135’168|          16|``HandleTableChunk``
+|57’344|           3|``IndcellHeap``
+|57’344|           3|``CacheEntryHeap``
+|40’960|           3|``LookupHeap``
+## Heap Segments
+Start|End|Committed End|Reserved End|Heap|Type
+|:---|:---|:---|:---|:---|:---|
+|``0215d7401000``|``0215d7bb3fe8``|``0215d7bc2000``|``021657400000``|   0|``Ephemeral``
+|``021657401000``|``021657beffe8``|``021657bf2000``|``0216d7400000``|   1|``Ephemeral``
+|``0216d7401000``|``0216d792d318``|``0216d80d2000``|``021757400000``|   2|``Ephemeral``
+|``021757401000``|``021757a3ffe8``|``021757a42000``|``0217d7400000``|   3|``Ephemeral``
+|``0217d7401000``|``0217d7f5bf48``|``0217d7fa2000``|``021857400000``|   4|``Ephemeral``
+|``021857401000``|``021857825240``|``021857aa2000``|``0218d7400000``|   5|``Ephemeral``
+|``0218d7401000``|``0218d7f8dfe8``|``0218d7f92000``|``021957400000``|   6|``Ephemeral``
+|``021957401000``|``021957c12678``|``021958302000``|``0219d7400000``|   7|``Ephemeral``
+|``0219d7401000``|``0219d743c668``|``0219d7442000``|``0219e7400000``|   0|``Large``
+|``0219e7401000``|``0219e7401018``|``0219e7402000``|``0219f7400000``|   1|``Large``
+|``0219f7401000``|``0219f7401018``|``0219f7402000``|``021a07400000``|   2|``Large``
+|``021a07401000``|``021a07401018``|``021a07402000``|``021a17400000``|   3|``Large``
+|``021a17401000``|``021a17401018``|``021a17402000``|``021a27400000``|   4|``Large``
+|``021a27401000``|``021a27401018``|``021a27402000``|``021a37400000``|   5|``Large``
+|``021a37401000``|``021a37401018``|``021a37402000``|``021a47400000``|   6|``Large``
+|``021a47401000``|``021a47401018``|``021a47402000``|``021a57400000``|   7|``Large``
+## Heap Balance
+Heap|Size in Bytes
+|:---|:---|
+| 0|8’316’496
+| 1|8’318’976
+| 2|5’423’920
+| 3|6’549’504
+| 4|11’906’912
+| 5|4’342’360
+| 6|12’111’872
+| 7|8’459’920
+## App Domains
+### DefaultDomain
+Loaded Modules:
+
+1. C:\WINDOWS\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll
+2. C:\WINDOWS\Microsoft.Net\assembly\GAC_64\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll
+3. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Build.Utilities.v4.0\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.Build.Utilities.v4.0.dll
+4. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll
+5. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll
+6. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Caching\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Runtime.Caching.dll
+7. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll
+8. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.RegularExpressions\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.RegularExpressions.dll
+9. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll
+10. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll
+### /LM/W3SVC/12/ROOT-1-131961183944670237
+Loaded Modules:
+
+1. C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\Web Tools\Page Inspector\Microsoft.VisualStudio.Web.PageInspector.Runtime.dll
+2. C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\Extensions\Microsoft\Web Tools\Page Inspector\Microsoft.VisualStudio.Web.PageInspector.Tracing.dll
+3. C:\WINDOWS\Microsoft.Net\assembly\GAC_64\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll
+4. C:\WINDOWS\Microsoft.Net\assembly\GAC_64\System.Data\v4.0_4.0.0.0__b77a5c561934e089\System.Data.dll
+5. C:\WINDOWS\Microsoft.Net\assembly\GAC_64\System.EnterpriseServices\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.EnterpriseServices.dll
+6. C:\WINDOWS\Microsoft.Net\assembly\GAC_64\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll
+7. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.Build.Utilities.v4.0\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.Build.Utilities.v4.0.dll
+8. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.CSharp\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.CSharp.dll
+9. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.JScript\v4.0_10.0.0.0__b03f5f7f11d50a3a\Microsoft.JScript.dll
+10. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\Microsoft.VisualStudio.Web.PageInspector.Loader\v4.0_1.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Web.PageInspector.Loader.dll
+11. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Activities\v4.0_4.0.0.0__31bf3856ad364e35\System.Activities.dll
+12. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.ComponentModel.DataAnnotations\v4.0_4.0.0.0__31bf3856ad364e35\System.ComponentModel.DataAnnotations.dll
+13. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll
+14. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll
+15. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Data.DataSetExtensions\v4.0_4.0.0.0__b77a5c561934e089\System.Data.DataSetExtensions.dll
+16. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll
+17. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Dynamic\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Dynamic.dll
+18. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.IdentityModel\v4.0_4.0.0.0__b77a5c561934e089\System.IdentityModel.dll
+19. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Caching\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Runtime.Caching.dll
+20. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Runtime.Serialization\v4.0_4.0.0.0__b77a5c561934e089\System.Runtime.Serialization.dll
+21. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel.Activation\v4.0_4.0.0.0__31bf3856ad364e35\System.ServiceModel.Activation.dll
+22. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel.Activities\v4.0_4.0.0.0__31bf3856ad364e35\System.ServiceModel.Activities.dll
+23. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel.Web\v4.0_4.0.0.0__31bf3856ad364e35\System.ServiceModel.Web.dll
+24. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.ServiceModel\v4.0_4.0.0.0__b77a5c561934e089\System.ServiceModel.dll
+25. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.ApplicationServices\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.ApplicationServices.dll
+26. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.DynamicData\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.DynamicData.dll
+27. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.Extensions\v4.0_4.0.0.0__31bf3856ad364e35\System.Web.Extensions.dll
+28. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.Mobile\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.Mobile.dll
+29. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.Mvc\v4.0_5.0.0.0__31bf3856ad364e35\System.Web.Mvc.dll
+30. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.RegularExpressions\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.RegularExpressions.dll
+31. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Web.Services\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll
+32. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.WorkflowServices\v4.0_4.0.0.0__31bf3856ad364e35\System.WorkflowServices.dll
+33. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xaml\v4.0_4.0.0.0__b77a5c561934e089\System.Xaml.dll
+34. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll
+35. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll
+36. C:\WINDOWS\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll
+37. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\App_global.asax.oizf4iof.dll
+38. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\App_Web_2rt3mxv1.dll
+39. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\App_Web_nghn0amz.dll
+40. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\0127b7a4\00f03fa5_d7bece01\System.Web.Razor.dll
+41. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\0205495f\00313f77_80aece01\Microsoft.Owin.Security.Twitter.dll
+42. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\022b356c\00313f77_80aece01\Microsoft.Owin.Security.MicrosoftAccount.dll
+43. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\07379524\003c57d9_fe82ce01\WebGrease.dll
+44. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\20cc9c87\00ae10f0_bdaece01\EntityFramework.SqlServer.dll
+45. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\20d208d8\00d7dc74_80aece01\Microsoft.Owin.Security.dll
+46. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\2b83bfc3\001d71a6_d7bece01\System.Web.WebPages.Deployment.dll
+47. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\3c5bbf16\00ae10f0_bdaece01\EntityFramework.dll
+48. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\57ee901c\00b4f9b4_4a6acd01\Microsoft.Web.Infrastructure.dll
+49. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\57fd4579\001d71a6_d7bece01\System.Web.WebPages.dll
+50. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\6dfbdfaf\001eaa54_d010ce01\Antlr3.Runtime.dll
+51. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\6f3f0ed7\003d69b9_a962ce01\Newtonsoft.Json.dll
+52. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\73b2022f\00040e76_80aece01\Microsoft.Owin.Security.Facebook.dll
+53. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\890dd854\00040e76_80aece01\Microsoft.Owin.Security.Cookies.dll
+54. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\8c44e592\003cc57a_05a9ce01\System.Web.Optimization.dll
+55. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\96b4a914\001d71a6_d7bece01\System.Web.WebPages.Razor.dll
+56. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\9bc25521\00e720c2_90c1cd01\Owin.dll
+57. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\9e77250c\001d71a6_d7bece01\System.Web.Helpers.dll
+58. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\a894e906\03cbedc1_bdd1d401\AspNetCrash.Web.dll
+59. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\b9975a2d\00aaab73_80aece01\Microsoft.Owin.Host.SystemWeb.dll
+60. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\bd0567de\009b593b_83aece01\Microsoft.AspNet.Identity.EntityFramework.dll
+61. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\cc1f87d2\009b593b_83aece01\Microsoft.AspNet.Identity.Core.dll
+62. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\de5f0144\00d7dc74_80aece01\Microsoft.Owin.dll
+63. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\e75b4e4d\00040e76_80aece01\Microsoft.Owin.Security.Google.dll
+64. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\e832913e\00313f77_80aece01\Microsoft.Owin.Security.OAuth.dll
+65. C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\56dc43e8\a0219328\assembly\dl3\f25a3633\009b593b_83aece01\Microsoft.AspNet.Identity.Owin.dll
+## Threads
+Total Threads: 17 (Alive: 17)
+
+### Thread ``0000000050ac``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``0000000083d4``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+|``  C9182FFBD8``|``           0``|``DebuggerU2MCatchHandlerFrame``
+### Thread ``0000000065f8``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000009228``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``00000000b438``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000008cc0``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000009dc4``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000007b00``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000009290``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``00000000ac6c``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000000a2c``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``00000000ac24``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000001a50``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000001184``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000009b50``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``0000000038ec``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+### Thread ``000000009394``
+#### Stack Trace
+Stack Pointer|Instruction Pointer|Display String
+|:---|:---|:---|
+## Top 1000 Objects by total size
+Type|Implements IDisposable|Count|Total Size in bytes
+|:---|:---|:---|:---|
+|``System.Byte[]``|False|17’168|19’395’092
+|``System.Char[]``|False|51’352|16’394’306
+|``System.String``|False|74’699|4’243’578
+|``System.Xml.XmlTextWriter+TagInfo[]``|False|5’697|3’327’048
+|``System.Collections.Hashtable+bucket[]``|False|23’214|2’315’760
+|``System.Collections.Hashtable``|False|23’212|1’856’960
+|``System.Int32[]``|False|6’505|1’464’196
+|``System.Text.StringBuilder``|False|28’489|1’367’472
+|``System.Xml.XmlTextWriter+Namespace[]``|False|5’697|1’230’552
+|``System.Collections.Hashtable+HashtableEnumerator``|False|17’097|957’432
+|``System.Collections.ArrayList``|False|23’301|932’040
+|``System.Object[]``|False|23’257|915’320
+|``System.Xml.XmlTextWriter``|True :warning:|5’697|820’368
+|``System.String[]``|False|11’557|757’400
+|``System.Xml.Serialization.TypeDesc``|False|5’789|740’992
+|``Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationWriterProduct``|False|5’697|683’640
+|``System.Xml.Serialization.XmlAttributes``|False|5’697|683’640
+|``System.IO.StreamWriter``|True :warning:|5’698|638’176
+|``System.Xml.Serialization.XmlSerializer``|False|5’697|501’336
+|``System.IO.MemoryStream``|True :warning:|5’697|455’760
+|``System.Attribute[]``|False|17’173|413’040
+|``System.Reflection.CustomAttributeRecord[]``|False|17’091|410’184
+|``System.Xml.Serialization.ElementAccessor``|False|5’697|410’184
+|``System.Text.UTF8Encoding+UTF8Encoder``|False|5’699|319’144
+|``System.Xml.XmlTextEncoder``|False|5’697|273’456
+|``System.Xml.Serialization.XmlTypeMapping``|False|5’697|273’456
+|``System.Collections.Generic.List<System.Attribute>``|False|5’697|227’880
+|``System.Xml.Serialization.TypeScope``|False|5’697|227’880
+|``AspNetCrash.Web.Models.Product``|False|5’697|227’880
+|``System.Reflection.RuntimeMethodInfo``|False|1’741|194’992
+|``System.Random``|False|5’714|182’848
+|``System.Xml.Serialization.TempAssemblyCacheKey``|False|5’697|182’304
+|``System.Int32``|False|5’900|141’600
+|``System.Type[]``|False|5’714|137’536
+|``System.Xml.Serialization.XmlElementAttributes``|False|5’697|136’728
+|``System.Xml.Serialization.XmlArrayItemAttributes``|False|5’697|136’728
+|``System.Xml.Serialization.XmlAnyElementAttributes``|False|5’697|136’728
+|``System.ObsoleteAttribute[]``|False|5’697|136’728
+|``System.Xml.Serialization.XmlRootAttribute[]``|False|5’697|136’728
+|``System.RuntimeType``|False|913|51’128
+|``System.Web.Caching.ExpiresBucket``|False|480|46’080
+|``Free``|False|1’215|42’540
+|``System.Web.Caching.UsageEntry[]``|False|9|37’080
+|``System.Reflection.RuntimeParameterInfo``|False|309|37’080
+|``System.Configuration.ConfigurationProperty``|False|325|33’800
+|``System.Web.Caching.ExpiresEntry[]``|False|14|29’008
+|``System.Collections.Specialized.NameObjectCollectionBase+NameObjectEntry``|False|793|25’376
+|``System.Configuration.FactoryRecord``|False|234|24’336
+|``System.Signature``|False|280|22’400
+|``System.Configuration.ConfigurationValue``|False|549|21’960
+|``System.Configuration.ConfigurationValues``|False|214|18’832
+|``System.Reflection.RuntimeMethodInfo[]``|False|49|15’416
+|``System.Xml.Schema.XmlSchemaSimpleType``|False|92|13’984
+|``System.Reflection.Emit.OpCode``|False|226|12’656
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AggregateSymbol``|False|55|12’320
+|``Microsoft.CSharp.RuntimeBinder.Semantics.MethodSymbol``|False|46|12’144
+|``System.Object``|False|498|11’952
+|``System.RuntimeType+RuntimeTypeCache``|False|68|10’880
+|``System.RuntimeType[]``|False|303|10’576
+|``System.Configuration.PropertySourceInfo``|False|322|10’304
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AggregateType``|False|95|9’880
+|``Microsoft.CSharp.RuntimeBinder.Syntax.NameTable+Entry``|False|247|9’880
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Object>[]``|False|4|9’696
+|``System.Reflection.RuntimeConstructorInfo``|False|86|9’632
+|``System.Threading.IThreadPoolWorkItem[]``|False|19|8’904
+|``System.Reflection.ParameterInfo[]``|False|241|8’320
+|``System.Configuration.PropertyInformation``|False|201|8’040
+|``System.Configuration.SectionRecord``|False|111|7’992
+|``System.Web.Caching.CacheEntry``|False|71|7’952
+|``System.Web.Caching.UsageBucket``|False|80|7’680
+|``System.Reflection.RuntimePropertyInfo``|False|73|7’592
+|``System.Configuration.SectionXmlInfo``|False|59|7’552
+|``System.Web.Configuration.AssemblyInfo``|False|54|6’912
+|``Microsoft.CSharp.RuntimeBinder.Semantics.PredefinedTypeFacts+PredefinedTypeInfo``|False|138|6’624
+|``System.Boolean[]``|False|249|6’603
+|``System.Collections.Generic.Dictionary+Entry<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.AggregateSymbol,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.AggregateType>[]``|False|1|6’328
+|``System.Configuration.SectionInformation``|False|38|6’080
+|``System.Reflection.RtFieldInfo``|False|72|5’760
+|``System.Configuration.ConfigurationElementCollection+Entry``|False|139|5’560
+|``System.Globalization.CultureData``|False|10|5’360
+|``System.Collections.Generic.List<System.Web.HttpApplication+IExecutionStep>[]``|False|19|5’320
+|``Microsoft.CSharp.RuntimeBinder.Semantics.CType[]``|False|128|5’272
+|``Microsoft.CSharp.RuntimeBinder.Semantics.PredefinedMethodInfo``|False|109|5’232
+|``System.Reflection.RuntimeEventInfo``|False|52|4’992
+|``System.Xml.Schema.XmlSchemaSimpleTypeRestriction``|False|48|4’992
+|``System.Collections.Generic.Dictionary+Entry<Microsoft.CSharp.RuntimeBinder.Semantics.SYMTBL+Key,Microsoft.CSharp.RuntimeBinder.Semantics.Symbol>[]``|False|1|4’752
+|``System.Collections.Generic.Dictionary+Entry<System.String,Microsoft.CSharp.RuntimeBinder.Syntax.PredefinedType>[]``|False|1|4’752
+|``System.Web.Configuration.BuildProvider``|False|38|4’560
+|``System.Configuration.SectionInput``|False|59|4’248
+|``System.Web.Caching.ExpiresBucket[]``|False|16|4’224
+|``System.Reflection.RuntimeModule``|False|64|4’096
+|``System.Reflection.RuntimeAssembly``|False|70|3’920
+|``Microsoft.CSharp.RuntimeBinder.Syntax.NameManager+KnownName``|False|120|3’840
+|``Microsoft.CSharp.RuntimeBinder.Semantics.SYMTBL+Key``|False|112|3’584
+|``System.ComponentModel.ReflectEventDescriptor``|False|25|3’400
+|``System.Reflection.Emit.OpCode[]``|False|5|3’400
+|``System.Collections.Hashtable+SyncHashtable``|False|37|3’256
+|``Microsoft.CSharp.RuntimeBinder.Syntax.Name``|False|127|3’048
+|``System.Collections.Specialized.ListDictionary+DictionaryNode``|False|76|3’040
+|``System.Web.FileChangeEventHandler``|False|46|2’944
+|``System.Xml.Serialization.NameKey``|False|92|2’944
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.UriParser>[]``|False|4|2’880
+|``System.Collections.Generic.Dictionary+Entry<Microsoft.CSharp.RuntimeBinder.Semantics.BSYMMGR+TypeArrayKey,Microsoft.CSharp.RuntimeBinder.Semantics.TypeArray>[]``|False|1|2’872
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.String>[]``|False|7|2’736
+|``System.Boolean``|False|109|2’616
+|``System.Collections.Specialized.ListDictionary``|False|54|2’592
+|``System.Web.Caching.ExpiresPage[]``|False|14|2’576
+|``System.Collections.Specialized.HybridDictionary``|False|63|2’520
+|``System.Web.Caching.CacheDependency``|True :warning:|38|2’432
+|``System.Action<System.Object,System.EventArgs>``|False|38|2’432
+|``System.TimeSpan``|False|99|2’376
+|``System.EventHandler``|False|37|2’368
+|``System.RuntimeType+RuntimeTypeCache+MemberInfoCache<System.Reflection.RuntimeConstructorInfo>``|False|41|2’296
+|``Microsoft.CSharp.RuntimeBinder.Syntax.Name[]``|False|41|2’296
+|``System.Version``|False|71|2’272
+|``System.ComponentModel.ReflectTypeDescriptionProvider+ReflectedTypeData``|False|28|2’240
+|``System.Threading.TimerQueueTimer``|False|25|2’200
+|``System.RuntimeType+RuntimeTypeCache+MemberInfoCache<System.Reflection.RuntimeMethodInfo>``|False|39|2’184
+|``Microsoft.CSharp.RuntimeBinder.Semantics.NamespaceSymbol``|False|21|2’184
+|``System.Web.FileMonitorTarget``|False|45|2’160
+|``Microsoft.CSharp.RuntimeBinder.Syntax.NameTable+Entry[]``|False|2|2’096
+|``Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterSymbol``|False|17|2’040
+|``System.Web.FileMonitor``|False|23|2’024
+|``Microsoft.CSharp.RuntimeBinder.Semantics.CONSTVAL[]``|False|49|1’968
+|``System.Collections.Generic.List<Microsoft.CSharp.RuntimeBinder.Syntax.Name>``|False|49|1’960
+|``System.Xml.XmlQualifiedName``|False|49|1’960
+|``Microsoft.CSharp.RuntimeBinder.Semantics.TypeArray``|False|80|1’920
+|``System.String[,]``|False|1|1’832
+|``System.Web.Configuration.BuildProvider+ConfigurationBuildProviderInfo``|False|38|1’824
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Web.RequestNotification>[]``|False|2|1’824
+|``System.Configuration.RuntimeConfigurationRecord``|False|11|1’760
+|``System.Configuration.PropertyInformationCollection``|False|20|1’760
+|``System.Configuration.ConfigurationPropertyCollection``|False|73|1’752
+|``System.Reflection.RuntimeConstructorInfo[]``|False|42|1’696
+|``System.Runtime.Remoting.ServerIdentity``|False|11|1’672
+|``System.Threading.TimerCallback``|False|26|1’664
+|``System.Web.Caching.CacheSingle``|True :warning:|16|1’664
+|``System.Web.Caching.UsagePage[]``|False|9|1’656
+|``System.Web.HttpApplication+IExecutionStep[]``|False|29|1’592
+|``System.Runtime.InteropServices.UnmanagedType[]``|False|49|1’572
+|``System.Collections.Generic.HashSet<Microsoft.CSharp.RuntimeBinder.Semantics.KAID>``|False|24|1’536
+|``System.Xml.Schema.XmlSchemaObjectCollection``|False|48|1’536
+|``System.Action``|False|23|1’472
+|``System.Runtime.Serialization.SerializationEvents``|False|30|1’440
+|``System.Runtime.Remoting.Metadata.SoapTypeAttribute``|False|18|1’440
+|``System.Collections.Generic.Dictionary<System.String,System.String>``|False|18|1’440
+|``System.WeakReference``|False|58|1’392
+|``System.Collections.Generic.Dictionary+Entry<System.Type,System.Runtime.Serialization.Formatters.Binary.TypeInformation>[]``|False|2|1’344
+|``System.Runtime.Versioning.FrameworkName``|False|28|1’344
+|``System.Globalization.NumberFormatInfo``|False|6|1’296
+|``System.Runtime.Serialization.MemberHolder``|False|27|1’296
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Runtime.Serialization.MemberHolder,System.Reflection.MemberInfo[]>``|False|27|1’296
+|``System.Runtime.Remoting.Metadata.RemotingTypeCachedData``|False|18|1’296
+|``System.Globalization.CultureInfo``|False|10|1’280
+|``System.Web.Configuration.MapPathCacheInfo``|False|32|1’280
+|``System.UriParser+BuiltInUriParser``|False|32|1’280
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.Assembly,System.String>``|False|26|1’248
+|``System.Runtime.Serialization.Formatters.Binary.TypeInformation``|False|31|1’240
+|``System.Threading.QueueUserWorkItemCallback``|False|31|1’240
+|``System.Reflection.Emit.DynamicILGenerator``|False|8|1’216
+|``System.Web.Configuration.EventMappingSettings``|False|10|1’200
+|``System.Web.ApplicationImpersonationContext``|True :warning:|29|1’160
+|``System.Reflection.Assembly[]``|False|29|1’152
+|``System.Text.RegularExpressions.RegexCharClass+LowerCaseMapping[]``|False|1|1’152
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ExpressionBinder+PfnBindBinOp``|False|18|1’152
+|``Microsoft.CSharp.RuntimeBinder.Semantics.PredefinedTypeFacts+PredefinedTypeInfo[]``|False|1|1’128
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AggregateSymbol[]``|False|1|1’128
+|``System.ComponentModel.AttributeCollection``|False|28|1’120
+|``System.Web.Configuration.ExpressionBuilder``|False|10|1’120
+|``System.CodeDom.Compiler.CompilerParameters``|False|10|1’120
+|``System.Collections.Generic.List<System.Web.HttpApplication+IExecutionStep>``|False|28|1’120
+|``System.Reflection.RuntimeFieldInfo[]``|False|19|1’104
+|``System.RuntimeType+RuntimeTypeCache+MemberInfoCache<System.Reflection.RuntimeFieldInfo>``|False|19|1’064
+|``System.Threading.Thread``|False|11|1’056
+|``System.RuntimeType+ActivatorCacheEntry``|False|22|1’056
+|``System.Text.RegularExpressions.RegexInterpreter``|False|6|1’056
+|``System.IntPtr[]``|False|1|1’048
+|``System.Dynamic.Utils.CacheDict+Entry<System.Reflection.MethodBase,System.Reflection.ParameterInfo[]>[]``|False|1|1’048
+|``System.ComponentModel.EventHandlerList+ListEntry``|False|26|1’040
+|``System.Reflection.RuntimeMethodInfo[][]``|False|13|1’040
+|``System.Web.Util.DoubleLinkList``|False|26|1’040
+|``System.AsyncCallback``|False|16|1’024
+|``System.Web.Caching.UsageBucket[]``|False|16|1’024
+|``System.RuntimeType+RuntimeTypeCache+MemberInfoCache<System.RuntimeType>``|False|18|1’008
+|``Microsoft.CSharp.RuntimeBinder.Syntax.NameManager+KnownName[]``|False|2|1’008
+|``System.Collections.Generic.HashSet+Slot<Microsoft.CSharp.RuntimeBinder.Semantics.KAID>[]``|False|16|960
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ExpressionBinder+BinOpSig``|False|20|960
+|``System.Web.Caching.CacheDependency+DepFileInfo``|False|29|928
+|``System.Reflection.MethodInfo[]``|False|23|928
+|``System.Configuration.RuntimeConfigurationRecord+RuntimeConfigurationFactory``|False|29|928
+|``System.Web.VirtualPath``|False|23|920
+|``System.Collections.Generic.Dictionary+Entry<System.Web.Util.AppVerifierErrorCode,System.String>[]``|False|1|912
+|``System.Web.Caching.CacheExpires``|False|16|896
+|``Microsoft.CSharp.RuntimeBinder.Semantics.PredefinedMethodInfo[]``|False|1|896
+|``System.Reflection.Emit.DynamicMethod``|False|8|896
+|``Microsoft.CSharp.RuntimeBinder.Semantics.MethodSymbol[]``|False|1|896
+|``System.Collections.Generic.Dictionary<System.String,System.Object>``|False|11|880
+|``System.Xml.XmlTextWriter+State[]``|False|2|880
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.AppContext+SwitchValueState>[]``|False|2|864
+|``System.Configuration.ProviderSettings``|False|6|864
+|``System.Reflection.RuntimePropertyInfo[]``|False|11|856
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Runtime.Serialization.MemberHolder,System.Reflection.MemberInfo[]>[]``|False|2|832
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Object>``|False|17|816
+|``System.Threading.ThreadPoolWorkQueue+WorkStealingQueue``|False|17|816
+|``System.Threading.ManualResetEvent``|True :warning:|17|816
+|``Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterType``|False|17|816
+|``System.Threading.Timer``|True :warning:|25|800
+|``System.Configuration.ElementInformation``|False|20|800
+|``System.CodeDom.Compiler.CompilerInfo``|False|10|800
+|``System.Threading.ExecutionContext``|True :warning:|9|792
+|``Microsoft.Win32.RegistryKey``|True :warning:|14|784
+|``System.Web.Caching.CacheItemRemovedCallback``|False|12|768
+|``System.RuntimeMethodInfoStub``|False|8|768
+|``System.Collections.Specialized.StringCollection``|False|32|768
+|``System.Reflection.FieldInfo[]``|False|19|760
+|``System.Web.DirMonCompletion``|True :warning:|10|720
+|``System.ComponentModel.ReflectPropertyDescriptor``|False|3|720
+|``System.Runtime.Remoting.ObjRef``|False|11|704
+|``System.Configuration.BaseConfigurationRecord+ConfigRecordStreamInfo``|False|11|704
+|``Microsoft.CSharp.RuntimeBinder.Semantics.PropertySymbol``|False|3|696
+|``System.Threading.ThreadPoolWorkQueueThreadLocals``|False|17|680
+|``System.Web.ModuleConfigurationInfo``|False|17|680
+|``System.Configuration.ProviderSettingsCollection``|False|4|672
+|``System.WeakReference[]``|False|7|664
+|``System.Reflection.MdFieldInfo``|False|9|648
+|``System.Threading.Tasks.Task<System.Object>``|True :warning:|8|640
+|``Microsoft.Win32.SafeHandles.SafeWaitHandle``|True :warning:|20|640
+|``System.Web.DirectoryMonitor``|True :warning:|10|640
+|``System.Web.NativeFileChangeNotification``|False|10|640
+|``System.Web.Caching.CacheUsage``|False|16|640
+|``<>f__AnonymousType0<System.Collections.Hashtable,System.Web.Caching.CacheExpires,System.Web.Caching.CacheUsage>``|False|16|640
+|``System.Web.CachedPathData``|False|10|640
+|``System.Web.Configuration.TrustLevel``|False|5|640
+|``System.Web.HttpApplication+SyncEventExecutionStep``|False|20|640
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ExpressionBinder+UnaOpSig``|False|16|640
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Object[]>[]``|False|2|624
+|``System.Text.RegularExpressions.Regex``|False|6|624
+|``System.Diagnostics.Tracing.EventSource+OverideEventProvider``|True :warning:|7|616
+|``System.Int64[,]``|False|1|616
+|``System.Collections.ArrayList[,]``|False|1|616
+|``Microsoft.Win32.SafeHandles.SafeRegistryHandle``|True :warning:|19|608
+|``System.Threading.TimerHolder``|False|25|600
+|``__DynamicallyInvokableAttribute``|False|25|600
+|``System.Security.PermissionSet``|False|9|576
+|``System.Collections.Generic.Dictionary+Entry<System.RuntimeType,System.RuntimeType>[]``|False|2|576
+|``System.Guid[]``|False|8|576
+|``System.Reflection.Emit.DynamicResolver``|False|8|576
+|``System.Collections.Generic.HashSet<System.String>``|False|9|576
+|``System.Diagnostics.DefaultTraceListener``|True :warning:|7|560
+|``System.RuntimeType+RuntimeTypeCache+MemberInfoCache<System.Reflection.RuntimePropertyInfo>``|False|10|560
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.Assembly,System.String>[]``|False|1|560
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Object>[]``|False|2|544
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Boolean>[]``|False|2|544
+|``System.Web.HttpRuntime``|False|2|544
+|``System.Security.Principal.GenericIdentity``|False|4|544
+|``System.Dynamic.Utils.CacheDict+Entry<System.Type,System.Reflection.MethodInfo>[]``|False|1|536
+|``System.Reflection.MemberInfo[]``|False|6|528
+|``Microsoft.CSharp.RuntimeBinder.Semantics.LocalVariableSymbol``|False|6|528
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Boolean>``|False|13|520
+|``System.Reflection.CerHashtable+Table<System.String,System.Reflection.RuntimeMethodInfo[]>``|False|13|520
+|``System.ComponentModel.AttributeCollection+AttributeEntry[]``|False|5|520
+|``System.Threading.WaitCallback``|False|8|512
+|``System.Threading.ReaderWriterLock``|False|8|512
+|``System.Web.Caching.SRef``|False|16|512
+|``System.Configuration.KeyValueConfigurationElement``|False|4|512
+|``System.Configuration.ConfigurationLockCollection``|False|8|512
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ExpressionBinder+PfnBindUnaOp``|False|8|512
+|``System.Diagnostics.SourceSwitch``|False|7|504
+|``System.Security.Permissions.FileIOPermission``|False|7|504
+|``System.RuntimeType+RuntimeTypeCache+MemberInfoCache<System.Reflection.RuntimeEventInfo>``|False|9|504
+|``System.Web.Configuration.CompilationSection``|False|3|504
+|``System.ComponentModel.EventDescriptor[]``|False|4|496
+|``System.Reflection.RuntimeEventInfo[]``|False|3|488
+|``System.Runtime.Serialization.SerializationFieldInfo``|False|12|480
+|``System.Text.UTF8Encoding``|False|10|480
+|``System.Guid``|False|15|480
+|``System.Configuration.IntegerValidator``|False|15|480
+|``ASP.global_asax``|True :warning:|2|480
+|``System.Web.PipelineModuleStepContainer``|False|15|480
+|``System.Web.Mobile.MobileCapabilities``|False|1|464
+|``System.Resources.ResourceManager``|False|3|456
+|``System.Web.Configuration.HttpCapabilitiesBase``|False|1|456
+|``System.Runtime.Serialization.Formatters.Binary.ObjectReader+TypeNAssembly``|False|14|448
+|``Microsoft.Win32.UnsafeNativeMethods+ManifestEtw+EtwEnableCallback``|False|7|448
+|``System.Web.Util.FileAttributesData``|False|8|448
+|``System.Threading.ContextCallback``|False|7|448
+|``System.Web.Configuration.BufferModeSettings``|False|4|448
+|``System.Runtime.Remoting.Identity``|False|5|440
+|``System.Configuration.ConfigurationSchemaErrors``|False|11|440
+|``System.AppDomain``|False|2|432
+|``System.Collections.Generic.Dictionary+Entry<System.Type,System.Security.Policy.EvidenceTypeDescriptor>[]``|False|1|432
+|``System.Web.Util.DisposableGCHandleRef<System.Threading.Timer>``|True :warning:|18|432
+|``System.Collections.Generic.Dictionary+Entry<Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterSymbol,Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterType>[]``|False|1|432
+|``System.Runtime.Remoting.Messaging.LogicalCallContext``|False|6|432
+|``System.Text.RegularExpressions.RegexCode``|False|6|432
+|``System.Web.HttpContext``|False|1|424
+|``System.Globalization.CalendarData[]``|False|2|416
+|``Microsoft.CSharp.RuntimeBinder.SymbolTable+NameHashKey``|False|13|416
+|``System.RuntimeMethodHandle``|False|17|408
+|``System.Resources.ResourceReader``|True :warning:|3|408
+|``System.Security.Policy.EvidenceTypeDescriptor``|False|10|400
+|``System.Collections.Generic.List<System.Reflection.MethodInfo>``|False|10|400
+|``System.Runtime.Remoting.Proxies.RemotingProxy``|False|5|400
+|``System.Web.SessionState.SessionStateModule``|False|2|400
+|``System.Diagnostics.Tracing.EtwSession[]``|False|7|392
+|``System.Configuration.StreamInfo``|False|7|392
+|``System.Web.HttpRequest``|False|1|392
+|``System.Globalization.CompareInfo``|False|6|384
+|``System.Diagnostics.Tracing.FrameworkEventSource``|True :warning:|2|384
+|``System.SizedReference``|True :warning:|16|384
+|``System.Web.Util.DisposableGCHandleRef<System.Web.Caching.CacheSingle>``|True :warning:|16|384
+|``System.Reflection.MemberFilter``|False|6|384
+|``System.Web.TelemetryEventSource``|True :warning:|2|384
+|``System.Reflection.Emit.DynamicMethod+RTDynamicMethod``|False|8|384
+|``System.Reflection.Emit.ScopeTree``|False|8|384
+|``System.Reflection.Emit.SignatureHelper``|False|8|384
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Globalization.CultureData>[]``|False|2|384
+|``System.Web.Configuration.FolderLevelBuildProviderCollection``|False|2|368
+|``System.Globalization.DateTimeFormatInfo``|False|1|368
+|``System.Diagnostics.BooleanSwitch``|False|5|360
+|``System.Runtime.InteropServices.ComVisibleAttribute``|False|15|360
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRMEMGRP``|False|3|360
+|``System.Collections.Generic.List<System.Object>``|False|9|360
+|``System.Reflection.Emit.__FixupData[]``|False|3|360
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Resources.ResourceLocator>[]``|False|3|360
+|``System.Text.RegularExpressions.RegexBoyerMoore``|False|5|360
+|``System.Globalization.TextInfo``|False|4|352
+|``System.Runtime.Remoting.Messaging.StackBuilderSink``|False|11|352
+|``System.Web.Caching.CacheDependency+DepCacheInfo``|False|11|352
+|``System.Web.Configuration.HttpRuntimeSection``|False|2|352
+|``System.Web.HttpApplication+AsyncEventExecutionStep``|False|4|352
+|``System.Security.Claims.Claim``|False|4|352
+|``System.Web.HttpResponse``|False|1|344
+|``System.Configuration.Internal.FileVersion``|False|7|336
+|``System.Collections.Queue``|False|6|336
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRCALL``|False|3|336
+|``System.Web.Configuration.AssemblyCollection``|False|2|336
+|``System.Web.Configuration.BuildProviderCollection``|False|2|336
+|``System.Web.Configuration.ExpressionBuilderCollection``|False|2|336
+|``System.Net.Logging+NclTraceSource``|False|6|336
+|``System.Diagnostics.SourceElementsCollection``|False|2|336
+|``System.Diagnostics.SwitchElementsCollection``|False|2|336
+|``System.Diagnostics.ListenerElementsCollection``|False|2|336
+|``System.Linq.Lookup+Grouping<System.String,System.Reflection.MethodInfo>``|False|6|336
+|``System.Web.Management.WebBaseEvent+SystemEventType[,]``|False|1|328
+|``System.Threading.ThreadAbortException``|False|2|320
+|``System.Globalization.CalendarData``|False|2|320
+|``System.Int32[][]``|False|6|320
+|``System.Runtime.Remoting.TypeInfo``|False|8|320
+|``System.Collections.Generic.Dictionary<System.String,System.UriParser>``|False|4|320
+|``System.Configuration.Internal.StreamChangeCallback``|False|5|320
+|``System.Security.PermissionToken[]``|False|2|320
+|``System.Dynamic.Utils.CacheDict+Entry<System.Reflection.MethodBase,System.Reflection.ParameterInfo[]>``|False|8|320
+|``System.Threading.CompressedStack``|False|8|320
+|``System.Collections.Generic.List<System.String>``|False|8|320
+|``System.Func<System.Web.Mvc.IDependencyResolver>``|False|5|320
+|``System.Threading.Tasks.ContinuationTaskFromTask``|True :warning:|4|320
+|``Microsoft.Owin.Host.SystemWeb.CallEnvironment.AspNetDictionary``|False|1|320
+|``System.RuntimeTypeHandle``|False|13|312
+|``System.IO.UnmanagedMemoryStream``|True :warning:|3|312
+|``System.Web.Mvc.Async.SingleEntryGate``|False|13|312
+|``System.RuntimeType+ActivatorCacheEntry[]``|False|2|304
+|``System.Threading.ThreadPoolWorkQueue+WorkStealingQueue[]``|False|2|304
+|``System.Runtime.Versioning.FrameworkName[]``|False|2|304
+|``System.Web.Routing.PathSubsegment[]``|False|6|304
+|``System.Web.Hosting.IIS7WorkerRequest``|False|1|304
+|``System.Collections.Generic.HashSet+Slot<Microsoft.CSharp.RuntimeBinder.SymbolTable+NameHashKey>[]``|False|1|296
+|``System.Collections.Generic.HashSet+Slot<System.Type>[]``|False|1|296
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Int32>[]``|False|1|288
+|``System.Web.HttpApplication+AsyncAppEventHandler``|False|6|288
+|``System.Collections.Generic.Dictionary+Entry<System.Type,System.Object>[]``|False|3|288
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AggregateDeclaration``|False|3|288
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Resources.ResourceSet>[]``|False|3|288
+|``System.Threading.ReaderWriterLockSlim``|True :warning:|3|288
+|``System.Threading.Tasks.Task+ContingentProperties``|False|4|288
+|``System.Diagnostics.TraceSource``|False|5|280
+|``System.Runtime.Remoting.Proxies.__TransparentProxy``|False|5|280
+|``System.UInt32[]``|False|1|280
+|``System.Web.ModuleConfigurationInfo[]``|False|1|280
+|``System.Text.RegularExpressions.ExclusiveReference``|False|7|280
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Web.Hosting.CustomRuntimeManager+CustomRuntimeRegistration,System.Object>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Diagnostics.TraceSource>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Web.Hosting.ISuspendibleRegisteredObject,System.Object>[]``|False|1|272
+|``System.Security.Claims.Claim[]``|False|6|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Tuple<System.Type,System.Web.VirtualPath>,System.Configuration.ConfigurationSection>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Web.VirtualPath,System.Configuration.Configuration>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Object,System.Object>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Int32>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Type,System.Web.SessionState.SessionStateBehavior>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Type,System.Object>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Type,System.Collections.Generic.IEnumerable<System.Object>>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionMethodSelectorAttribute>>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionNameSelectorAttribute>>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>[]``|False|1|272
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Type,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>[]``|False|1|272
+|``System.Diagnostics.TraceListenerCollection``|False|11|264
+|``System.Runtime.Remoting.ChannelInfo``|False|11|264
+|``System.Runtime.Remoting.Messaging.ServerObjectTerminatorSink``|False|11|264
+|``System.DateTime``|False|11|264
+|``System.Nullable<System.Boolean>``|False|11|264
+|``System.Web.AspNetSynchronizationContext+<>c__DisplayClass21_0``|False|11|264
+|``Microsoft.CSharp.RuntimeBinder.Semantics.Scope``|False|3|264
+|``System.AppDomainSetup``|False|2|256
+|``System.Text.EncoderReplacementFallback``|False|8|256
+|``System.Text.DecoderReplacementFallback``|False|8|256
+|``System.Web.Util.DoubleLinkList[]``|False|2|256
+|``System.Web.Caching.CacheSizeMonitor``|False|2|256
+|``System.Xml.XmlTextReaderImpl+NodeData``|False|2|256
+|``System.Reflection.TypeFilter``|False|4|256
+|``System.Configuration.AppSettingsSection``|False|2|256
+|``System.Reflection.Emit.LineNumberInfo``|False|8|256
+|``System.Runtime.CompilerServices.Closure``|False|8|256
+|``System.Func<System.Runtime.CompilerServices.CallSite,System.Object,System.Object>``|False|4|256
+|``System.Action<System.Threading.Tasks.Task>``|False|4|256
+|``System.Web.Configuration.FolderLevelBuildProvider``|False|2|256
+|``System.Func<System.Boolean>``|False|4|256
+|``System.Web.Configuration.AuthenticationSection``|False|2|256
+|``System.Web.BeginEventHandler``|False|4|256
+|``System.Web.EndEventHandler``|False|4|256
+|``System.Web.Configuration.AuthorizationSection``|False|2|256
+|``System.Web.Hosting.HostingEnvironment``|False|1|248
+|``System.Web.Compilation.BuildManager``|False|1|248
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.String,System.Diagnostics.TraceSource>``|False|5|240
+|``System.Security.Permissions.SecurityPermission``|False|10|240
+|``System.Web.Configuration.CacheSection``|False|2|240
+|``System.Runtime.Remoting.Contexts.IContextProperty[]``|False|4|240
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRCONSTANT``|False|3|240
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRLIST``|False|3|240
+|``System.Reflection.RuntimePropertyInfo[][]``|False|3|240
+|``System.Collections.Generic.Dictionary<System.Type,System.Object>``|False|3|240
+|``System.Web.Configuration.TrustSection``|False|2|240
+|``System.Web.Configuration.SecurityPolicySection``|False|2|240
+|``System.Collections.Generic.Dictionary<System.String,System.Resources.ResourceSet>``|False|3|240
+|``System.Collections.Generic.Dictionary<System.String,System.Resources.ResourceLocator>``|False|3|240
+|``System.Web.Configuration.WebControlsSection``|False|2|240
+|``System.Threading.ThreadLocal+LinkedSlot<System.Collections.Concurrent.ConcurrentBag+ThreadLocalList<System.Web.HttpApplication>>``|False|5|240
+|``System.Web.Configuration.HealthMonitoringSection``|False|2|240
+|``System.Web.Configuration.UrlMappingsSection``|False|2|240
+|``Microsoft.CSharp.RuntimeBinder.Semantics.BindingContext``|False|1|232
+|``System.Web.Caching.SRef[]``|False|4|224
+|``System.Int64[]``|False|4|224
+|``System.Security.Util.TokenBasedSet``|False|4|224
+|``System.Security.PermissionToken``|False|7|224
+|``System.Text.UnicodeEncoding``|False|4|224
+|``System.Diagnostics.TraceSection``|False|2|224
+|``System.Web.Caching.CacheKey``|False|7|224
+|``System.Web.Configuration.ProfileSettings``|False|2|224
+|``System.Web.Configuration.RuleSettings``|False|2|224
+|``System.Web.Optimization.BundleFileSetOrdering``|False|7|224
+|``System.Text.RegularExpressions.RegexPrefix``|False|7|224
+|``System.Text.RegularExpressions.SharedReference``|False|7|224
+|``System.Text.RegularExpressions.Match``|False|2|224
+|``System.Collections.Concurrent.ConcurrentBag+ThreadLocalList<System.Web.HttpApplication>``|False|3|216
+|``System.Web.HttpApplication+<>c__DisplayClass285_1``|False|9|216
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRCLASS``|False|3|216
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRTYPEOF``|False|3|216
+|``Microsoft.CSharp.RuntimeBinder.Semantics.EXPRWRAP``|False|3|216
+|``System.Configuration.InfiniteIntConverter``|False|9|216
+|``System.Resources.RuntimeResourceSet``|True :warning:|3|216
+|``System.IO.BinaryReader``|True :warning:|3|216
+|``System.Runtime.Serialization.Formatters.Binary.BinaryFormatter``|False|3|216
+|``System.Diagnostics.TraceSwitch``|False|3|216
+|``System.Security.Principal.WindowsIdentity``|True :warning:|1|216
+|``System.Web.FileChangesMonitor``|False|2|208
+|``System.Runtime.Remoting.Contexts.Context``|False|2|208
+|``System.Collections.Generic.List<System.WeakReference>``|False|5|200
+|``System.Web.Hosting.RecycleLimitMonitor+RecycleLimitMonitorSingleton``|False|1|200
+|``System.Collections.Generic.List<System.Web.Routing.PathSubsegment>``|False|5|200
+|``System.Web.AspNetEventSource``|True :warning:|1|200
+|``System.Collections.Generic.List<System.Security.Claims.Claim>``|False|5|200
+|``System.Collections.Generic.List<System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>>``|False|5|200
+|``System.Threading.Tasks.StandardTaskContinuation``|False|5|200
+|``System.CultureAwareComparer``|False|6|192
+|``System.Func<System.Boolean,System.Boolean>``|False|3|192
+|``System.Threading.InternalCrossContextDelegate``|False|3|192
+|``System.Configuration.TimeSpanValidator``|False|4|192
+|``System.Web.Configuration.RuntimeConfig``|False|4|192
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Web.Hosting.LockableAppDomainContext>[]``|False|2|192
+|``System.CtorDelegate``|False|3|192
+|``System.Web.HttpAsyncResult``|False|3|192
+|``System.Web.Hosting.AspNetHostExecutionContextManager+RevertAction``|False|3|192
+|``System.ComponentModel.WeakHashtable``|False|2|192
+|``System.ComponentModel.TypeDescriptor+TypeDescriptionNode``|False|4|192
+|``System.Reflection.Emit.DynamicScope``|False|8|192
+|``System.Reflection.Emit.GenericMethodInfo``|False|6|192
+|``System.Func<System.Runtime.CompilerServices.CallSite,System.Object,System.Collections.Generic.IEnumerable<System.Object>>``|False|3|192
+|``System.Configuration.ValidatorCallback``|False|3|192
+|``System.ResolveEventHandler``|False|3|192
+|``System.Xml.Schema.XmlSchemaInfo``|False|3|192
+|``System.Func<System.Reflection.MethodInfo,System.String>``|False|3|192
+|``System.Collections.Concurrent.CDSCollectionETWBCLProvider``|True :warning:|1|192
+|``System.Web.HttpModuleCollection``|False|2|192
+|``System.Web.Optimization.IgnoreList+SuffixMatch``|False|6|192
+|``System.Threading.Tasks.TplEtwProvider``|True :warning:|1|192
+|``System.Security.Claims.ClaimsIdentity[]``|False|4|192
+|``System.Web.Configuration.AuthorizationRule``|False|1|192
+|``System.Func<System.Web.Mvc.IControllerFactory>``|False|3|192
+|``System.Func<System.Web.Mvc.IViewPageActivator>``|False|3|192
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ExpressionBinder+BinOpSig[]``|False|1|184
+|``System.Runtime.Remoting.Channels.CrossAppDomainSink[]``|False|2|176
+|``System.Web.Util.DisposableGCHandleRef<System.Web.Caching.CacheSingle>[]``|False|2|176
+|``System.Web.Configuration.RootProfilePropertySettingsCollection``|False|1|176
+|``System.Web.Configuration.GlobalizationSection``|False|1|176
+|``System.String[][]``|False|2|176
+|``System.Web.Configuration.HealthMonitoringSectionHelper+RuleInfo``|False|2|176
+|``System.Web.Configuration.AuthorizationRuleCollection``|False|1|176
+|``System.Web.Compilation.BuildResultCompiledType``|False|2|176
+|``System.Security.Permissions.ReflectionPermission``|False|7|168
+|``System.Globalization.CodePageDataItem``|False|3|168
+|``System.Configuration.KeyValueConfigurationCollection``|False|1|168
+|``System.Web.Configuration.CompilerCollection``|False|1|168
+|``System.Web.Configuration.CodeSubDirectoriesCollection``|False|1|168
+|``System.Web.Configuration.TrustLevelCollection``|False|1|168
+|``System.Diagnostics.SharedListenerElementsCollection``|False|1|168
+|``System.Net.Configuration.ConnectionManagementElementCollection``|False|1|168
+|``System.Text.UTF8Encoding+UTF8Decoder``|False|3|168
+|``System.Web.Configuration.IdentitySection``|False|1|168
+|``System.Web.Configuration.ProfileGroupSettingsCollection``|False|1|168
+|``System.Web.Configuration.ProfilePropertySettingsCollection``|False|1|168
+|``System.Web.Configuration.BufferModesCollection``|False|1|168
+|``System.Web.Configuration.ProfileSettingsCollection``|False|1|168
+|``System.Web.Configuration.RuleSettingsCollection``|False|1|168
+|``System.Web.Configuration.EventMappingSettingsCollection``|False|1|168
+|``System.Web.Routing.PathSegment[]``|False|3|168
+|``System.Web.Configuration.UrlMappingCollection``|False|1|168
+|``System.Exception``|False|1|160
+|``System.OutOfMemoryException``|False|1|160
+|``System.StackOverflowException``|False|1|160
+|``System.ExecutionEngineException``|False|1|160
+|``System.Collections.Generic.Dictionary<System.String,System.Globalization.CultureData>``|False|2|160
+|``System.Threading.Tasks.Task<System.Web.Hosting.ApplicationManager+ApplicationResumeStateContainer>``|True :warning:|2|160
+|``System.Collections.Generic.Dictionary<System.String,System.Web.Hosting.LockableAppDomainContext>``|False|2|160
+|``System.Collections.Generic.Dictionary<System.String,System.AppContext+SwitchValueState>``|False|2|160
+|``System.Collections.Generic.Dictionary<System.String,System.Object[]>``|False|2|160
+|``System.Collections.Generic.Dictionary<System.String,System.LocalDataStoreSlot>``|False|2|160
+|``Microsoft.Win32.SafeHandles.SafeAccessTokenHandle``|True :warning:|5|160
+|``Microsoft.Win32.SafeHandles.SafeLsaMemoryHandle``|True :warning:|4|160
+|``System.Configuration.Internal.InternalConfigRoot``|False|2|160
+|``System.Collections.Generic.Dictionary<System.String,System.Type>``|False|2|160
+|``System.Collections.Generic.Dictionary<System.RuntimeType,System.RuntimeType>``|False|2|160
+|``System.Threading.Tasks.Task<System.Threading.Tasks.TaskHelpersExtensions+AsyncVoid>``|True :warning:|2|160
+|``System.ComponentModel.ReflectTypeDescriptionProvider``|False|4|160
+|``System.Collections.Generic.Dictionary<System.Type,System.Runtime.Serialization.Formatters.Binary.TypeInformation>``|False|2|160
+|``System.Runtime.Remoting.DomainSpecificRemotingData``|False|2|160
+|``System.Diagnostics.ListenerElement``|False|1|160
+|``System.TimeZoneInfo+AdjustmentRule``|False|2|160
+|``System.Collections.Generic.Dictionary<System.String,System.Web.RequestNotification>``|False|2|160
+|``System.Web.Routing.ParameterSubsegment``|False|5|160
+|``System.Collections.Generic.Dictionary<System.String,System.Web.Optimization.Bundle>``|False|2|160
+|``System.Collections.ObjectModel.Collection<System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>>``|False|5|160
+|``System.Configuration.CommaDelimitedStringCollection``|False|4|160
+|``System.Collections.Specialized.ListDictionary+NodeEnumerator``|False|4|160
+|``System.Web.Caching.AggregateCacheDependency``|True :warning:|2|160
+|``System.Web.Hosting.AspNetHostExecutionContextManager+AspNetHostExecutionContext``|True :warning:|4|160
+|``System.Web.HttpWriter``|True :warning:|1|152
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ExpressionBinder+UnaOpSig[]``|False|1|152
+|``System.Xml.Serialization.Configuration.XmlSerializerSection``|False|1|152
+|``System.Threading.CancellationTokenSource``|True :warning:|2|144
+|``System.Web.Caching.AspNetCache``|True :warning:|3|144
+|``System.Security.CodeAccessPermission[]``|False|2|144
+|``System.Web.Caching.CacheCommon``|False|2|144
+|``System.SerializableAttribute``|False|6|144
+|``System.TimeZoneInfo``|False|2|144
+|``System.Web.Routing.RouteValueDictionary``|False|6|144
+|``System.Web.PipelineModuleStepContainer[]``|False|1|144
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Type,System.Object>``|False|3|144
+|``Microsoft.Owin.Host.SystemWeb.OwinCallContext``|True :warning:|1|144
+|``System.Runtime.CompilerServices.ConditionalWeakTable+Entry<System.Object,System.Runtime.Serialization.SerializationInfo>[]``|False|1|136
+|``System.Net.Configuration.ConnectionManagementSection``|False|1|136
+|``System.Web.Configuration.ProfileSection``|False|1|136
+|``System.Web.HttpHeaderCollection``|False|1|136
+|``System.Web.Mvc.WebFormViewEngine``|False|1|136
+|``System.Web.Mvc.RazorViewEngine``|False|1|136
+|``Microsoft.CSharp.RuntimeBinder.Semantics.TypeManager``|False|1|136
+|``AspNetCrash.Web.Controllers.HomeController``|True :warning:|1|136
+|``System.Web.Mvc.Async.AsyncResultWrapper+WrappedAsyncResult<System.Web.Mvc.ActionResult,System.Web.Mvc.Async.AsyncControllerActionInvoker+ActionInvocation>``|False|1|136
+|``System.__ComObject``|False|4|128
+|``System.UnhandledExceptionEventHandler``|False|2|128
+|``System.Collections.Concurrent.ConcurrentDictionary<System.String,System.Object>``|False|2|128
+|``System.Func<System.Collections.Generic.IDictionary<System.String,System.Object>,System.Threading.Tasks.Task>``|False|2|128
+|``System.Func<System.Web.WebPages.VirtualPathFactoryManager>``|False|2|128
+|``System.Func<System.String,System.Boolean>``|False|2|128
+|``System.Collections.Concurrent.ConcurrentDictionary<System.String,System.Boolean>``|False|2|128
+|``System.Web.HttpWorkerRequest+EndOfSendNotification``|False|2|128
+|``System.Configuration.Internal.InternalConfigEventHandler``|False|2|128
+|``System.Configuration.StringValidator``|False|4|128
+|``Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.StageAsyncResult``|False|2|128
+|``System.Runtime.Remoting.Messaging.IllogicalCallContext``|False|4|128
+|``System.Func<System.Threading.Tasks.Task<System.Threading.Tasks.TaskHelpersExtensions+AsyncVoid>>``|False|2|128
+|``System.Func<System.Threading.Tasks.CatchInfo,System.Threading.Tasks.CatchInfoBase+CatchResult<System.Threading.Tasks.Task>>``|False|2|128
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Runtime.Serialization.MemberHolder,System.Reflection.MemberInfo[]>``|False|2|128
+|``System.Text.SBCSCodePageEncoding``|False|1|128
+|``System.Func<System.Reflection.ParameterInfo,System.Reflection.ParameterInfo,System.Boolean>``|False|2|128
+|``System.Func<System.Runtime.CompilerServices.CallSite,System.Object,System.Object>[]``|False|4|128
+|``Microsoft.CSharp.RuntimeBinder.CSharpGetMemberBinder``|False|2|128
+|``System.Func<System.Dynamic.DynamicMetaObjectBinder,System.Int32,Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo>``|False|2|128
+|``System.Web.Configuration.WebContext``|False|2|128
+|``Microsoft.CSharp.CSharpCodeGenerator``|False|2|128
+|``System.Double[]``|False|1|128
+|``System.Func<System.Web.Routing.PathSubsegment,System.Boolean>``|False|2|128
+|``System.Web.Configuration.OutputCacheSection``|False|1|128
+|``System.Web.Configuration.SessionStateSection``|False|1|128
+|``System.Web.SessionState.HttpSessionStateContainer``|False|2|128
+|``System.Func<System.Web.Mvc.IControllerActivator>``|False|2|128
+|``System.Func<System.Type,System.String>``|False|2|128
+|``System.Func<System.String>``|False|2|128
+|``System.Web.Mvc.IFilterProvider[]``|False|3|128
+|``System.Security.Principal.GenericPrincipal``|False|2|128
+|``System.Collections.DictionaryEntry``|False|4|128
+|``System.Reflection.Emit.InternalModuleBuilder``|False|2|128
+|``System.Web.Mvc.ActionMethodDispatcher+ActionExecutor``|False|2|128
+|``System.Func<System.String,System.String>``|False|2|128
+|``System.Web.Mvc.Async.AsyncResultWrapper+WrappedAsyncVoid<System.Web.Mvc.MvcHandler+ProcessRequestState>``|False|1|128
+|``System.Web.Mvc.Async.AsyncResultWrapper+WrappedAsyncVoid<System.Web.Mvc.Controller+ExecuteCoreState>``|False|1|128
+|``System.Web.Mvc.Async.BeginInvokeDelegate``|False|2|128
+|``System.Func<System.Web.Mvc.ActionExecutedContext>``|False|2|128
+|``System.Runtime.Remoting.Metadata.RemotingMethodCachedData``|False|1|120
+|``System.Configuration.ConfigurationElementProperty``|False|5|120
+|``System.DateTime[]``|False|3|120
+|``System.Web.Configuration.WebConfigurationHostFileChange``|False|5|120
+|``System.Int64``|False|5|120
+|``System.Threading.Tasks.TaskCompletionSource<System.Object>``|False|5|120
+|``System.Collections.Generic.Dictionary+Entry<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.ArrayType>[]``|False|1|120
+|``Microsoft.CSharp.RuntimeBinder.Semantics.MethWithInst``|False|3|120
+|``System.Reflection.CerHashtable+Table<System.String,System.Reflection.RuntimePropertyInfo[]>``|False|3|120
+|``System.Dynamic.Utils.CacheDict+Entry<System.Type,System.Reflection.MethodInfo>``|False|3|120
+|``System.Web.Configuration.HostingEnvironmentSection``|False|1|120
+|``System.Web.Configuration.ProcessModelSection``|False|1|120
+|``System.Diagnostics.SystemDiagnosticsSection``|False|1|120
+|``System.Web.Configuration.DeploymentSection``|False|1|120
+|``System.Web.HttpApplicationFactory``|False|1|120
+|``System.Web.Routing.ContentPathSegment``|False|5|120
+|``System.ComponentModel.PropertyDescriptor[]``|False|3|120
+|``System.Web.Configuration.RoleManagerSection``|False|1|120
+|``System.Web.Configuration.AnonymousIdentificationSection``|False|1|120
+|``System.Web.Configuration.TraceSection``|False|1|120
+|``System.Collections.Generic.List<System.Security.Claims.ClaimsIdentity>``|False|3|120
+|``System.Web.Configuration.ScriptingAuthenticationServiceSection``|False|1|120
+|``System.Runtime.Remoting.Messaging.CallContextSecurityData``|False|5|120
+|``System.Web.Mvc.IViewEngine[]``|False|3|120
+|``System.Security.Policy.StrongName``|False|2|112
+|``System.Web.WebPages.FileExistenceCache``|False|2|112
+|``System.LocalDataStoreMgr``|False|2|112
+|``System.Web.RequestTimeoutManager``|False|2|112
+|``System.Security.PermissionTokenFactory``|False|2|112
+|``System.Web.NotificationContext``|False|2|112
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ArrayType``|False|2|112
+|``System.Linq.Expressions.ParameterExpression[]``|False|4|112
+|``System.Diagnostics.AssertSection``|False|1|112
+|``System.Diagnostics.PerfCounterSection``|False|1|112
+|``System.Web.DynamicModuleRegistryEntry[]``|False|2|112
+|``System.Collections.Concurrent.ConcurrentBag<System.Web.HttpApplication>``|False|2|112
+|``System.Globalization.TimeSpanFormat+FormatLiterals``|False|2|112
+|``System.ComponentModel.PropertyDescriptorCollection``|False|2|112
+|``System.Web.Optimization.BundleFileSetOrdering[]``|False|2|112
+|``System.Web.Optimization.IgnoreList+IgnoreMatch[]``|False|2|112
+|``System.Web.SessionState.InProcSessionStateStore``|False|2|112
+|``System.Reflection.Emit.InternalAssemblyBuilder``|False|2|112
+|``System.Web.Mvc.SingleServiceResolver<System.Web.Mvc.IViewPageActivator>``|False|2|112
+|``System.Web.RegularExpressions.BrowserCapsRefRegexRunner23``|False|1|112
+|``System.Web.SessionState.SessionStateItemCollection``|False|1|112
+|``System.Web.Mvc.Async.AsyncResultWrapper+WrappedAsyncVoid<System.Web.Mvc.Controller>``|False|1|112
+|``System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>[]``|False|3|104
+|``System.Web.Configuration.WebConfigurationHost``|False|1|104
+|``System.Configuration.KeyValueInternalCollection``|False|1|104
+|``System.Web.HttpApplicationState``|False|1|104
+|``System.Threading.ThreadLocal+LinkedSlotVolatile<System.Collections.Concurrent.ConcurrentBag+ThreadLocalList<System.Web.HttpApplication>>[]``|False|3|104
+|``System.Web.Management.WebBaseEvent+SystemEventTypeInfo[]``|False|1|104
+|``System.Web.RegularExpressions.BrowserCapsRefRegex``|False|1|104
+|``Microsoft.CSharp.RuntimeBinder.Semantics.BSYMMGR``|False|1|104
+|``System.Web.Mvc.Async.AsyncResultWrapper+WrappedAsyncResult<System.Boolean>``|False|1|104
+|``System.Web.Mvc.Async.AsyncResultWrapper+WrappedAsyncResult<System.Web.Mvc.ActionExecutedContext>``|False|1|104
+|``System.Runtime.Serialization.Formatters.Binary.InternalPrimitiveTypeE[]``|False|1|100
+|``System.OrdinalComparer``|False|4|96
+|``Microsoft.Owin.Host.SystemWeb.Infrastructure.DefaultTrace``|False|4|96
+|``System.Collections.Concurrent.ConcurrentDictionary+Tables<System.String,System.Object>``|False|2|96
+|``System.Web.AspNetHostingPermission``|False|4|96
+|``System.Collections.Concurrent.ConcurrentDictionary+Tables<System.String,System.Boolean>``|False|2|96
+|``System.Security.Util.URLString``|False|1|96
+|``System.RuntimeType+ActivatorCache``|False|2|96
+|``System.Threading.AutoResetEvent``|True :warning:|2|96
+|``System.Runtime.Remoting.Lifetime.Lease``|False|1|96
+|``System.Text.UTF8Encoding+UTF8EncodingSealed``|False|2|96
+|``System.OperatingSystem``|False|2|96
+|``System.Threading.TimerQueue``|False|2|96
+|``System.Security.Util.StringExpressionSet``|False|2|96
+|``System.DateTimeOffset``|False|3|96
+|``System.Web.Configuration.ErrorRuntimeConfig``|False|2|96
+|``System.Configuration.DefaultValidator``|False|4|96
+|``System.Web.Caching.CacheMultiple``|True :warning:|2|96
+|``System.Configuration.OverrideModeSetting``|False|4|96
+|``System.Configuration.LongValidator``|False|2|96
+|``System.Configuration.ClientConfigPaths``|False|1|96
+|``System.Web.Hosting.AspNetHostExecutionContextManager+<>c__DisplayClass3_1``|False|3|96
+|``System.Web.Hosting.AspNetHostExecutionContextManager+<>c__DisplayClass3_0``|False|3|96
+|``System.Web.Configuration.RegexMatchTimeoutValidator``|False|2|96
+|``System.Collections.Concurrent.ConcurrentDictionary+Tables<System.Runtime.Serialization.MemberHolder,System.Reflection.MemberInfo[]>``|False|2|96
+|``System.Runtime.Remoting.Channels.ChannelServicesData``|False|2|96
+|``System.Security.Cryptography.RNGCryptoServiceProvider``|True :warning:|3|96
+|``System.Runtime.Remoting.RemotingConfigHandler+RemotingConfigInfo``|False|2|96
+|``System.Collections.Generic.Dictionary+Entry<System.Web.Hosting.RecycleLimitMonitor,System.String>[]``|False|1|96
+|``System.Collections.Generic.Dictionary+KeyCollection<System.String,System.String>``|False|4|96
+|``System.Collections.Generic.Dictionary+Entry<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Semantics.PointerType>[]``|False|1|96
+|``Microsoft.CSharp.RuntimeBinder.Semantics.PredefinedPropertyInfo``|False|3|96
+|``Microsoft.CSharp.RuntimeBinder.Semantics.CMemberLookupResults``|False|3|96
+|``System.Linq.Expressions.LabelTarget``|False|3|96
+|``Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo``|False|3|96
+|``System.Runtime.CompilerServices.CallSite<System.Func<System.Runtime.CompilerServices.CallSite,System.Object,System.Object>>``|False|2|96
+|``System.Runtime.CompilerServices.TrueReadOnlyCollection<System.Linq.Expressions.ParameterExpression>``|False|3|96
+|``System.Configuration.CallbackValidator``|False|3|96
+|``System.Collections.Generic.LinkedList<System.WeakReference>``|False|2|96
+|``Microsoft.CSharp.CSharpCodeProvider``|True :warning:|2|96
+|``System.Resources.ResourceManager+CultureNameResourceSetPair``|False|3|96
+|``System.Resources.ResourceReader+TypeLimitingDeserializationBinder``|False|3|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Web.Compilation.BuildProviderInfo>[]``|False|1|96
+|``System.Web.Compilation.AssemblyReferenceInfo``|False|3|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Web.Compilation.AssemblyReferenceInfo>[]``|False|1|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.TimeZoneInfo>[]``|False|1|96
+|``System.Threading.ThreadLocal+FinalizationHelper<System.Collections.Concurrent.ConcurrentBag+ThreadLocalList<System.Web.HttpApplication>>``|False|3|96
+|``System.Collections.Specialized.NameValueCollection``|False|1|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Web.Routing.RouteBase>[]``|False|1|96
+|``System.Web.Optimization.BundleCollection``|False|1|96
+|``System.Web.Optimization.IgnoreList``|False|2|96
+|``System.Threading.ReaderWriterCount``|False|2|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Linq.ILookup<System.String,System.Type>>[]``|False|1|96
+|``System.Web.RootedObjects``|False|1|96
+|``System.Collections.Hashtable+KeyCollection``|False|4|96
+|``System.Collections.Generic.Dictionary+Entry<System.Type,System.Web.Mvc.ControllerDescriptor>[]``|False|1|96
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionMethodSelectorAttribute>>``|False|2|96
+|``System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>``|False|3|96
+|``System.Collections.Concurrent.ConcurrentDictionary+Node<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>``|False|2|96
+|``System.Collections.Generic.Dictionary+Entry<System.Reflection.MethodInfo,System.Web.Mvc.ActionMethodDispatcher>[]``|False|1|96
+|``Microsoft.CSharp.RuntimeBinder.SymbolTable``|False|1|96
+|``System.Web.Mvc.Async.AsyncControllerActionInvoker+AsyncInvocationWithFilters``|False|1|96
+|``System.Xml.Schema.XmlSchemaPatternFacet``|False|1|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Boolean>[]``|False|1|96
+|``System.Collections.Generic.Dictionary+Entry<System.String,System.Text.RegularExpressions.Regex>[]``|False|1|96
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AggregateType[]``|False|3|88
+|``System.Web.Compilation.BuildResultCompiledGlobalAsaxType``|False|1|88
+|``System.Web.RequestQueue``|False|1|88
+|``System.Web.Management.WebSuccessAuditEvent``|False|1|88
+|``System.Web.Util.SynchronizationHelper``|False|1|88
+|``System.Web.ThreadContext``|False|1|88
+|``Microsoft.CSharp.RuntimeBinder.RuntimeBinder``|False|1|88
+|``System.Threading.Tasks.ContinuationResultTaskFromTask<System.Boolean>``|True :warning:|1|88
+|``System.Web.Hosting.ProcessHost``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.Int32>``|False|1|80
+|``System.Collections.Concurrent.ConcurrentBag+Node<System.Web.HttpApplication>``|False|2|80
+|``System.Security.Permissions.EnvironmentPermission``|False|2|80
+|``System.Runtime.Remoting.Contexts.DynamicPropertyHolder``|False|2|80
+|``System.Collections.Generic.List<System.LocalDataStore>``|False|2|80
+|``System.Web.Util.Profiler``|False|2|80
+|``System.Collections.Generic.List<System.Web.Caching.SRef>``|False|2|80
+|``System.Web.Hosting.ISAPIApplicationHost``|False|1|80
+|``System.Web.Hosting.MemoryBytes``|False|1|80
+|``System.Runtime.Remoting.Channels.CrossAppDomainData``|False|2|80
+|``System.Collections.Generic.Dictionary<System.Type,System.Security.Policy.EvidenceTypeDescriptor>``|False|1|80
+|``System.IObserver<System.Web.Hosting.RecycleLimitInfo>[]``|False|2|80
+|``System.Web.Hosting.LowPhysicalMemoryMonitor``|False|1|80
+|``System.IObserver<System.Web.Hosting.LowPhysicalMemoryInfo>[]``|False|2|80
+|``Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterType[]``|False|2|80
+|``System.Collections.Generic.List<Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo>``|False|2|80
+|``System.IntPtr[][]``|False|2|80
+|``System.Char[][]``|False|2|80
+|``System.Threading.ThreadPoolWorkQueue``|False|2|80
+|``System.Threading.ThreadPoolWorkQueue+QueueSegment``|False|2|80
+|``System.Configuration.ContextInformation``|False|2|80
+|``System.CodeDom.Compiler.CodeDomCompilationConfiguration``|False|2|80
+|``System.Collections.Generic.Dictionary<System.Web.Hosting.RecycleLimitMonitor,System.String>``|False|1|80
+|``System.Func<System.Web.UI.ParseRecorder>[]``|False|2|80
+|``System.Func<System.Web.UI.RenderTraceListener>[]``|False|2|80
+|``System.Collections.Generic.Dictionary<System.String,System.Web.Compilation.BuildProviderInfo>``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.Web.Compilation.AssemblyReferenceInfo>``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.TimeZoneInfo>``|False|1|80
+|``System.Threading.ThreadLocal<System.Collections.Concurrent.ConcurrentBag+ThreadLocalList<System.Web.HttpApplication>>``|True :warning:|2|80
+|``System.Web.Profile.ProfileModule``|False|2|80
+|``System.Web.Management.RuleFiringRecord``|False|2|80
+|``System.Web.Management.WebApplicationLifetimeEvent``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.Web.Routing.RouteBase>``|False|1|80
+|``System.Web.Routing.RouteBase[]``|False|2|80
+|``System.Web.Mvc.Filter[]``|False|2|80
+|``System.Collections.Generic.List<System.Web.Routing.PathSegment>``|False|2|80
+|``System.Collections.Generic.Dictionary<System.String,System.Web.Optimization.DynamicFolderBundle>``|False|1|80
+|``System.Collections.Generic.List<System.Web.Optimization.IgnoreList+IgnoreMatch>``|False|2|80
+|``System.Web.Optimization.FileExtensionReplacementList+Entry[]``|False|2|80
+|``System.Collections.Generic.Dictionary<System.Web.Util.AppVerifierErrorCode,System.String>``|False|1|80
+|``System.Collections.Generic.Dictionary<System.Int32,System.Threading.Tasks.Task>``|False|1|80
+|``System.Security.Principal.WindowsPrincipal``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.Linq.ILookup<System.String,System.Type>>``|False|1|80
+|``System.Linq.Lookup+Grouping<System.String,System.Type>[]``|False|1|80
+|``System.Lazy<System.Boolean>``|False|2|80
+|``System.Collections.Generic.Dictionary<System.Type,System.Web.Mvc.ControllerDescriptor>``|False|1|80
+|``System.Collections.Specialized.ListDictionary+NodeKeyValueCollection+NodeKeyValueEnumerator``|False|2|80
+|``System.Linq.Lookup+Grouping<System.String,System.Reflection.MethodInfo>[]``|False|1|80
+|``System.Web.Mvc.IActionFilter[]``|False|2|80
+|``System.Web.Mvc.Filters.IAuthenticationFilter[]``|False|2|80
+|``System.Web.Mvc.IAuthorizationFilter[]``|False|2|80
+|``System.Web.Mvc.IExceptionFilter[]``|False|2|80
+|``System.Web.Mvc.IResultFilter[]``|False|2|80
+|``System.Collections.Generic.Dictionary<System.Reflection.MethodInfo,System.Web.Mvc.ActionMethodDispatcher>``|False|1|80
+|``System.Lazy<System.Web.Mvc.IViewPageActivator>``|False|2|80
+|``System.Web.WebPages.IDisplayMode[]``|False|2|80
+|``System.Web.Configuration.HttpCapabilitiesDefaultProvider``|False|1|80
+|``Microsoft.CSharp.RuntimeBinder.Syntax.NameTable``|False|2|80
+|``System.Collections.Generic.Dictionary<System.Tuple<System.Reflection.Assembly,System.Reflection.Assembly>,System.Boolean>``|False|1|80
+|``Microsoft.CSharp.RuntimeBinder.Semantics.TypeTable``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.AggregateSymbol,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.AggregateType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.AssemblyQualifiedNamespaceSymbol,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.ErrorType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.ErrorType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.ArrayType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.KeyPair<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Syntax.Name>,Microsoft.CSharp.RuntimeBinder.Semantics.ParameterModifierType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Semantics.PointerType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.CType,Microsoft.CSharp.RuntimeBinder.Semantics.NullableType>``|False|1|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterSymbol,Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterType>``|False|1|80
+|``System.Collections.Generic.List<Microsoft.CSharp.RuntimeBinder.Semantics.TypeParameterType>``|False|2|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.SYMTBL+Key,Microsoft.CSharp.RuntimeBinder.Semantics.Symbol>``|False|1|80
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AidContainer[]``|False|2|80
+|``System.Collections.Generic.Dictionary<Microsoft.CSharp.RuntimeBinder.Semantics.BSYMMGR+TypeArrayKey,Microsoft.CSharp.RuntimeBinder.Semantics.TypeArray>``|False|1|80
+|``Microsoft.CSharp.RuntimeBinder.Semantics.AssemblyQualifiedNamespaceSymbol``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,Microsoft.CSharp.RuntimeBinder.Syntax.PredefinedType>``|False|1|80
+|``System.Threading.Tasks.Task<System.Threading.Tasks.Task<System.Threading.Tasks.TaskHelpersExtensions+AsyncVoid>>``|True :warning:|1|80
+|``System.Threading.Tasks.UnwrapPromise<System.Threading.Tasks.TaskHelpersExtensions+AsyncVoid>``|True :warning:|1|80
+|``System.Web.Mvc.ActionExecutedContext``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.Boolean>``|False|1|80
+|``System.Collections.Generic.Dictionary<System.String,System.Text.RegularExpressions.Regex>``|False|1|80
+|``System.Runtime.Remoting.Lifetime.LeaseManager``|False|1|72
+|``System.Configuration.SimpleBitVector32``|False|3|72
+|``System.Xml.XmlCharType``|False|3|72
+|``System.Configuration.ClientConfigurationSystem``|False|1|72
+|``System.Web.Mvc.ResultExecutedContext``|False|1|72
+|``System.Web.ThreadContext+<>c__DisplayClass24_0``|False|3|72
+|``System.Collections.Generic.ObjectEqualityComparer<System.Type>``|False|3|72
+|``System.Security.Policy.Evidence``|False|1|72
+|``Microsoft.CSharp.RuntimeBinder.Semantics.CONSTVAL``|False|3|72
+|``System.Linq.Expressions.Expression[]``|False|3|72
+|``System.Net.TimerThread+TimerNode``|True :warning:|1|72
+|``System.Collections.Hashtable+ValueCollection``|False|3|72
+|``Microsoft.VisualBasic.VBCodeGenerator``|False|1|72
+|``System.Resources.ResourceManager+ResourceManagerMediator``|False|3|72
+|``System.Resources.ManifestBasedResourceGroveler``|False|3|72
+|``System.Web.Util.CaseInsensitiveStringSet``|False|3|72
+|``System.Web.HttpStaticObjectsCollection``|False|3|72
+|``System.Web.Util.ReadWriteSpinLock``|False|3|72
+|``System.Web.Mvc.RouteCollectionExtensions+IgnoreRouteInternal``|False|1|72
+|``System.Web.Routing.SeparatorPathSegment``|False|3|72
+|``System.Web.Routing.Route``|False|1|72
+|``Microsoft.Owin.Host.SystemWeb.IntegratedPipeline.IntegratedPipelineContext``|False|1|72
+|``System.Web.Mvc.FilterAttribute[]``|False|3|72
+|``Microsoft.CSharp.RuntimeBinder.Semantics.ErrorType``|False|1|72
+|``System.Uri``|False|1|72
+|``System.Collections.Generic.HashSet+Slot<System.String>[]``|False|1|72
+|``System.Web.Mvc.ReflectedActionDescriptor``|False|1|72
+|``System.Web.Mvc.Filters.AuthenticationContext``|False|1|72
+|``System.Web.Mvc.ActionExecutingContext``|False|1|72
+|``System.Xml.Serialization.TempAssembly``|False|1|72
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Web.Hosting.CustomRuntimeManager+CustomRuntimeRegistration,System.Object>``|False|1|64
+|``System.Web.Hosting.ApplicationManager``|False|1|64
+|``System.Func<System.Object,System.Boolean>``|False|1|64
+|``System.Func<System.Reflection.ParameterInfo,System.Type,System.Boolean>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.String,System.Diagnostics.TraceSource>``|False|1|64
+|``System.Func<Microsoft.Owin.Host.SystemWeb.OwinAppContext>``|False|1|64
+|``System.Action<System.Action>``|False|1|64
+|``System.Action<System.String>``|False|1|64
+|``System.Web.Hosting.AsyncCompletionDelegate``|False|1|64
+|``System.Web.Hosting.AsyncDisconnectNotificationDelegate``|False|1|64
+|``System.Web.Hosting.ExecuteFunctionDelegate``|False|1|64
+|``System.Web.Hosting.DisposeFunctionDelegate``|False|1|64
+|``System.Web.Hosting.RoleFunctionDelegate``|False|1|64
+|``System.Web.Hosting.PrincipalFunctionDelegate``|False|1|64
+|``System.Web.Hosting.ApplicationManager+AspNetAppDomainManager+AspNetAppDomainManagerImpl<System.Web.Hosting.AspNetHostExecutionContextManager,System.Object>``|False|1|64
+|``System.Security.Policy.ApplicationTrust``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Web.Hosting.ISuspendibleRegisteredObject,System.Object>``|False|1|64
+|``System.Runtime.Remoting.ObjectHandle``|False|2|64
+|``System.Runtime.Serialization.StreamingContext``|False|2|64
+|``System.Diagnostics.Tracing.ActivityTracker``|False|2|64
+|``System.Threading.TimerQueue+AppDomainTimerSafeHandle``|True :warning:|2|64
+|``Microsoft.Win32.SafeHandles.SafeLsaPolicyHandle``|True :warning:|2|64
+|``System.Configuration.Internal.ConfigSystem``|False|2|64
+|``System.Security.Permissions.FileIOAccess``|False|2|64
+|``System.Runtime.Versioning.BinaryCompatibility+BinaryCompatibilityMap``|False|2|64
+|``System.Security.Cryptography.SafeProvHandle``|True :warning:|2|64
+|``System.Configuration.ClientConfigurationHost``|False|1|64
+|``System.Web.Mvc.Filters.AuthenticationChallengeContext``|False|1|64
+|``System.Web.Mvc.ResultExecutingContext``|False|1|64
+|``System.Web.Util.SynchronizationHelper+<>c__DisplayClass21_0``|False|2|64
+|``System.Threading.Tasks.StackGuard``|False|2|64
+|``System.Func<System.Threading.Tasks.Task,System.Threading.Tasks.Task<System.Threading.Tasks.TaskHelpersExtensions+AsyncVoid>>``|False|1|64
+|``System.Func<System.Exception>``|False|1|64
+|``System.Threading.Tasks.TaskHelpersExtensions+<>c__DisplayClass1``|False|2|64
+|``System.Action<System.Action<System.Web.HttpContext>>``|False|1|64
+|``System.Web.Util.BinaryCompatibility``|False|2|64
+|``System.Runtime.Remoting.Channels.RegisteredChannel[]``|False|2|64
+|``System.Runtime.Remoting.Channels.RegisteredChannel``|False|2|64
+|``Microsoft.CSharp.RuntimeBinder.CSharpConvertBinder``|False|1|64
+|``Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo[]``|False|2|64
+|``System.Runtime.CompilerServices.RuleCache<System.Func<System.Runtime.CompilerServices.CallSite,System.Object,System.Object>>``|False|2|64
+|``System.Func<System.Runtime.CompilerServices.CallSite,System.Object,System.Collections.Generic.IEnumerable<System.Object>>[]``|False|2|64
+|``System.Func<System.Object,System.Web.WebPages.Instrumentation.PageExecutionListenerAdapter>``|False|1|64
+|``System.Func<System.Collections.Generic.KeyValuePair<System.String,System.Object>,System.Web.Mvc.TempDataDictionary,System.Boolean>``|False|1|64
+|``System.Func<System.Reflection.MemberInfo,System.Reflection.MethodInfo>``|False|1|64
+|``System.Action<System.Web.WebPages.RequestResourceTracker+SecureWeakReference>``|False|1|64
+|``System.Func<System.Web.Util.CancellationTokenHelper>``|False|1|64
+|``System.Action<System.IDisposable>``|False|1|64
+|``System.Net.TimerThread+Callback``|False|1|64
+|``System.Collections.Generic.HashSet<System.Reflection.Assembly>``|False|1|64
+|``Microsoft.Build.Shared.GetDirectories``|False|1|64
+|``Microsoft.Build.Shared.DirectoryExists``|False|1|64
+|``System.AssemblyLoadEventHandler``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Tuple<System.Type,System.Web.VirtualPath>,System.Configuration.ConfigurationSection>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Web.VirtualPath,System.Configuration.Configuration>``|False|1|64
+|``System.Web.Hosting.AspNetMemoryMonitor``|True :warning:|1|64
+|``System.Func<System.Web.UI.ParseRecorder>``|False|1|64
+|``System.Func<System.Web.UI.RenderTraceListener>``|False|1|64
+|``System.Web.Compilation.BuildProvider+CompilationBuildProviderInfo``|False|2|64
+|``System.Action<System.Type>``|False|1|64
+|``System.Func<System.Collections.Generic.Dictionary<System.Object,System.Object>>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Object,System.Object>``|False|1|64
+|``System.Func<System.Collections.Generic.IDictionary<System.Object,System.Object>>``|False|1|64
+|``System.Runtime.CompilerServices.RuntimeHelpers+TryCode``|False|1|64
+|``System.Runtime.CompilerServices.RuntimeHelpers+CleanupCode``|False|1|64
+|``System.TimeZoneInfo+CachedData``|False|1|64
+|``System.TimeZoneInfo+AdjustmentRule[]``|False|2|64
+|``System.Threading.WaitOrTimerCallback``|False|1|64
+|``System.Func<System.Web.DynamicModuleRegistryEntry,System.Web.ModuleConfigurationInfo>``|False|1|64
+|``System.Web.Caching.OutputCacheModule``|False|2|64
+|``System.Web.Security.FormsAuthenticationModule``|False|2|64
+|``System.Web.Configuration.HealthMonitoringSectionHelper``|False|1|64
+|``System.Web.Management.WebBaseEvent+SystemEventTypeInfo``|False|2|64
+|``System.Web.Routing.RouteCollection``|False|1|64
+|``System.Web.Optimization.FileExtensionReplacementList+Entry``|False|2|64
+|``System.ComponentModel.EventHandlerList``|True :warning:|2|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.String,System.Int32>``|False|1|64
+|``System.Web.SessionState.SessionIDManager``|False|2|64
+|``System.Func<System.Collections.Concurrent.ConcurrentDictionary<System.Reflection.Assembly,System.String>>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Reflection.Assembly,System.String>``|False|1|64
+|``System.Web.Util.ActivityIdHelper+GetCurrentDelegate``|False|1|64
+|``System.Web.Util.ActivityIdHelper+SetAndDestroyDelegate``|False|1|64
+|``System.Web.Util.ActivityIdHelper+SetAndPreserveDelegate``|False|1|64
+|``System.Web.AspNetEventSource+WriteEventWithRelatedActivityIdCoreDelegate``|False|1|64
+|``System.Func<System.Web.Util.HttpEncoder>``|False|1|64
+|``System.Func<System.Web.Util.RequestValidator>``|False|1|64
+|``System.Web.HttpApplication+CallHandlerExecutionStep``|False|1|64
+|``System.Action<System.Threading.Tasks.Task,System.Object>``|False|1|64
+|``System.Action<System.Object>``|False|1|64
+|``System.Func<System.Threading.Tasks.Task+ContingentProperties>``|False|1|64
+|``System.Predicate<System.Threading.Tasks.Task>``|False|1|64
+|``System.Predicate<System.Object>``|False|1|64
+|``System.EventHandler<Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Type,System.Web.SessionState.SessionStateBehavior>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Type,System.Object>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Type,System.Collections.Generic.IEnumerable<System.Object>>``|False|1|64
+|``System.Func<System.Type,System.Object>``|False|1|64
+|``System.Func<System.Type,System.Collections.Generic.IEnumerable<System.Object>>``|False|1|64
+|``System.Func<System.Type,System.Type>``|False|1|64
+|``System.Func<System.Linq.IGrouping<System.String,System.Type>,System.String>``|False|1|64
+|``System.Func<System.Linq.IGrouping<System.String,System.Type>,System.Linq.ILookup<System.String,System.Type>>``|False|1|64
+|``System.Func<System.Type,System.Web.SessionState.SessionStateBehavior>``|False|1|64
+|``System.Func<Microsoft.Owin.Host.SystemWeb.OwinCallContext+RemoveHeaderDel>``|False|1|64
+|``System.Action<System.Web.HttpContext>``|False|1|64
+|``System.Func<System.Web.HttpContext,System.Boolean>``|False|1|64
+|``Microsoft.Web.Infrastructure.DynamicValidationHelper.GetUnvalidatedCollectionsCallback``|False|1|64
+|``System.Func<System.Collections.Generic.KeyValuePair<System.String,System.Object>,System.Boolean>``|False|1|64
+|``System.Web.Mvc.Async.BeginInvokeDelegate<System.Web.Mvc.MvcHandler+ProcessRequestState>``|False|1|64
+|``System.Web.Mvc.Async.EndInvokeVoidDelegate<System.Web.Mvc.MvcHandler+ProcessRequestState>``|False|1|64
+|``System.Web.Mvc.Async.BeginInvokeDelegate<System.Web.Mvc.Controller>``|False|1|64
+|``System.Web.Mvc.Async.EndInvokeVoidDelegate<System.Web.Mvc.Controller>``|False|1|64
+|``System.Web.Mvc.Async.BeginInvokeDelegate<System.Web.Mvc.Controller+ExecuteCoreState>``|False|1|64
+|``System.Web.Mvc.Async.EndInvokeVoidDelegate<System.Web.Mvc.Controller+ExecuteCoreState>``|False|1|64
+|``System.Func<System.Type,System.Web.Mvc.ControllerDescriptor>``|False|1|64
+|``System.Web.RequestTimeoutManager+RequestTimeoutEntry``|False|1|64
+|``System.Collections.Specialized.ListDictionary+NodeKeyValueCollection``|False|2|64
+|``System.Func<System.Reflection.MethodInfo,System.Reflection.MethodInfo>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionMethodSelectorAttribute>>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionNameSelectorAttribute>>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>``|False|1|64
+|``System.Collections.Concurrent.ConcurrentDictionary<System.Type,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>``|False|1|64
+|``System.Func<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionMethodSelectorAttribute>>``|False|1|64
+|``System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.ActionMethodSelectorAttribute>``|False|2|64
+|``System.Func<System.Type,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>``|False|1|64
+|``System.Func<System.Reflection.MethodInfo,System.Collections.ObjectModel.ReadOnlyCollection<System.Web.Mvc.FilterAttribute>>``|False|1|64
+|``System.Func<System.Web.Mvc.ActionDescriptorHelper+CreateDescriptorState,System.Reflection.ParameterInfo[]>``|False|1|64
+|``System.Func<System.Reflection.ParameterInfo,System.Web.Mvc.ActionDescriptorHelper+CreateDescriptorState,System.Web.Mvc.ParameterDescriptor>``|False|1|64
+|``System.Web.Mvc.Async.EndInvokeDelegate<System.Web.Mvc.Async.AsyncControllerActionInvoker+ActionInvocation,System.Web.Mvc.ActionResult>``|False|1|64
+|``System.Web.Mvc.Async.BeginInvokeDelegate<System.Web.Mvc.Async.AsyncControllerActionInvoker+ActionInvocation>``|False|1|64
+|``System.Func<System.Reflection.MethodInfo,System.Web.Mvc.ActionMethodDispatcher>``|False|1|64
+|``System.Web.Mvc.ActionMethodDispatcher``|False|2|64
+|``System.Func<System.Linq.Expressions.ParameterExpression,System.Type>``|False|1|64
+|``System.Web.WebPages.DefaultDisplayMode``|False|2|64
+|``System.Func<System.Web.HttpContextBase,System.Boolean>``|False|1|64
+|``System.Web.Compilation.InstantiateObject``|False|1|64
+|``System.Action<System.Boolean>``|False|1|64
+|``Microsoft.CSharp.RuntimeBinder.Semantics.InputFile``|False|2|64
+|``System.Collections.Generic.HashSet<System.Type>``|False|1|64
+|``System.Collections.Generic.HashSet<Microsoft.CSharp.RuntimeBinder.SymbolTable+NameHashKey>``|False|1|64
+|``System.Func<System.Reflection.ConstructorInfo,System.Boolean>``|False|1|64
+|``System.Func<System.Reflection.MethodBase,System.Boolean>``|False|1|64
+|``System.Action<System.Action<System.Object>,System.Object>``|False|1|64
+|``System.Func<System.Threading.Tasks.Task,System.Object>``|False|1|64
+|``System.Func<System.Threading.Tasks.Task,System.Boolean>``|False|1|64
+|``System.Func<System.Web.Mvc.ControllerContext,System.Web.Mvc.ActionDescriptor,System.Collections.Generic.IEnumerable<System.Web.Mvc.Filter>>``|False|1|64
