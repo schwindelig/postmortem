@@ -5,6 +5,7 @@ using System.Linq;
 using PostMortem.Core.Export;
 using PostMortem.Core.Results;
 using PostMortem.Markdown;
+using Serilog;
 
 namespace PostMortem.Core.Report
 {
@@ -12,6 +13,8 @@ namespace PostMortem.Core.Report
     {
         public void GenerateReport(AnalysisResult result, string outputDirectory)
         {
+            Log.Verbose("Generating report");
+
             var document = new MarkdownDocument();
 
             // Title
@@ -140,7 +143,7 @@ namespace PostMortem.Core.Report
                     "Total Size in bytes"
                 },
                 arg => (string.IsNullOrWhiteSpace(arg.Type) ? "UNKNOWN" : arg.Type).MakeInlineCode(),
-                arg => arg.Count.ToString(),
+                arg => arg.Count.ToString("n0"),
                 arg => arg.TotalSize.ToString("n0")
             );
 
