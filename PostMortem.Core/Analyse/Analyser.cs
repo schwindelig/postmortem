@@ -46,6 +46,7 @@ namespace PostMortem.Core.Analyse
 
             var analysisResult = new AnalysisResult
             {
+                GeneralInfo = GetGeneralInfo(options),
                 RuntimeInfo = GetRuntimeInfo(runtime),
                 AppDomains = GetAppDomains(runtime),
                 Threads = GetThreads(runtime),
@@ -58,6 +59,19 @@ namespace PostMortem.Core.Analyse
             Log.Verbose("Finished analysis");
 
             return analysisResult;
+        }
+
+        private static GeneralInfo GetGeneralInfo(AnalyserOptions options)
+        {
+            var creationTime = File.GetCreationTime(options.Path);
+            var fileName = Path.GetFileName(options.Path);
+
+            return new GeneralInfo
+            {
+                DumpFilePath = options.Path,
+                DumpFileCreationTime = creationTime,
+                DumpFileName = fileName
+            };
         }
 
         private static IEnumerable<ObjectInfo> GetObjects(ClrRuntime runtime)

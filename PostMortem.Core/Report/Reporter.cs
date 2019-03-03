@@ -15,7 +15,13 @@ namespace PostMortem.Core.Report
             var document = new MarkdownDocument();
 
             // Title
-            document.WriteHeader1($"PostMortem Report - {DateTime.Now:F}");
+            document.WriteHeader1($"PostMortem Report for {result.GeneralInfo.DumpFileName.MakeInlineCode()}");
+            document.WriteLine($"Report generated: {DateTime.Now:F}");
+
+            // General Info
+            document.WriteHeader2("General Information");
+            document.WriteLine($"Dump File Creation Time: {result.GeneralInfo.DumpFileCreationTime:F}{Environment.NewLine}");
+            document.WriteLine($"Dump File Path: {result.GeneralInfo.DumpFilePath.MakeInlineCode()}");
 
             // Runtime Info
             document.WriteHeader2("Runtime Info");

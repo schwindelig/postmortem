@@ -2,7 +2,7 @@
   "profiles": {
     "PostMortem": {
       "commandName": "Project",
-      "commandLineArgs": "-v -p C:\\Temp\\swt\\w3wp-1\\w3wp.dmp -o C:\\Temp\\postmortem\\results"
+      "commandLineArgs": "-v -p C:\\Temp\\crash-analysis\\20190303_133921_Crash_Mode\\FULLDUMP_FirstChance_epr_Process_Shut_Down_w3wp.exe__967c_2019-03-03_13-40-38-774_399c.dmp -o C:\\Temp\\postmortem\\results"
     }
   }
 }

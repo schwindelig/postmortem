@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Diagnostics.Runtime;
 
 namespace PostMortem.Core.Results
 {
     public class AnalysisResult
     {
+        public GeneralInfo GeneralInfo { get; set; }
+
         public RuntimeInfo RuntimeInfo { get; set; }
 
         public IEnumerable<AppDomainInfo> AppDomains { get; set; }
@@ -18,6 +21,15 @@ namespace PostMortem.Core.Results
         public IEnumerable<HeapBalanceInfo> HeapBalance { get; set; }
 
         public IEnumerable<ObjectInfo> Objects { get; set; }
+    }
+
+    public class GeneralInfo
+    {
+        public string DumpFilePath { get; set; }
+
+        public DateTime DumpFileCreationTime { get; set; }
+
+        public string DumpFileName { get; set; }
     }
 
     public class ObjectInfo
