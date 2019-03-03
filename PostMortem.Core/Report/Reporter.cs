@@ -29,6 +29,54 @@ namespace PostMortem.Core.Report
                 info => info.HeapCount.ToString(),
                 info => info.ServerGarbageCollector.ToString());
 
+            // Memory Regions
+            document.WriteHeader2("Memory Regions");
+            document.WriteTable(
+                result.MemoryRegions,
+                new[]
+                {
+                    "Total Size",
+                    "Count",
+                    "Type"
+                },
+                info => $"{info.TotalSize,6:n0}",
+                info => $"{info.Count,12:n0}",
+                info => info.Type.ToString().MakeInlineCode());
+
+            // Heap Segments
+            document.WriteHeader2("Heap Segments");
+            document.WriteTable(
+                result.HeapSegments,
+                new []
+                {
+                    "Start",
+                    "End",
+                    "Committed End",
+                    "Reserved End",
+                    "Heap",
+                    "Type"
+                },
+                info => $"{info.Start.ToString("x12").MakeInlineCode()}",
+                info => $"{info.End.ToString("x12").MakeInlineCode()}",
+                info => $"{info.CommittedEnd.ToString("x12").MakeInlineCode()}",
+                info => $"{info.ReservedEnd.ToString("x12").MakeInlineCode()}",
+                info => $"{info.Heap,4}",
+                info => $"{info.Type.MakeInlineCode()}"
+            );
+
+            // Heap Balance
+            document.WriteHeader2("Heap Balance");
+            document.WriteTable(
+                result.HeapBalance,
+                new []
+                {
+                    "Heap",
+                    "Size in Bytes"
+                },
+                info => $"{info.Heap,2}",
+                info => $"{info.Size:n0}"
+            );
+
             // App Domains
             document.WriteHeader2("App Domains");
             foreach (var appDomain in result.AppDomains)

@@ -125,7 +125,8 @@ namespace PostMortem.Core.Analyse
                 heapSegmentInfos.Add(new HeapSegmentInfo
                 {
                     Start = segment.Start,
-                    CommittedEnd = segment.End,
+                    End = segment.End,
+                    CommittedEnd = segment.CommittedEnd,
                     ReservedEnd = segment.ReservedEnd,
                     Heap = segment.ProcessorAffinity,
                     Type = type

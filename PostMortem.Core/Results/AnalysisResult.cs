@@ -45,6 +45,8 @@ namespace PostMortem.Core.Results
         public int Heap { get; set; }
 
         public string Type { get; set; }
+
+        public ulong End { get; set; }
     }
 
     public class MemoryRegionInfo
