@@ -95,3 +95,7 @@ The analysis report provides the following information:
   - Indicator if type directly implements `IDisposable`
   - Count / number of instances
   - Total size in bytes
+
+### Compare Report
+
+**TODO:** Describe all the shizzle here
