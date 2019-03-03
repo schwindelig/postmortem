@@ -119,6 +119,7 @@ namespace PostMortem.Core.Report
             }
 
             // Objects
+            const int objectsToTake = 1000;
             var topObjects = result.Objects
                 .GroupBy(o => o.TypeName)
                 .Select(infos => new
@@ -128,9 +129,9 @@ namespace PostMortem.Core.Report
                     TotalSize = infos.Sum(info => (uint)info.Size)
                 })
                 .OrderByDescending(arg => arg.TotalSize)
-                .Take(100);
+                .Take(objectsToTake);
 
-            document.WriteHeader2("Top Objects");
+            document.WriteHeader2($"Top {objectsToTake} Objects by total size");
             document.WriteTable(
                 topObjects,
                 new[]
