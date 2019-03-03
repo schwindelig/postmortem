@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using PostMortem.Core.Analyse;
+using PostMortem.Core.Export;
 using PostMortem.Core.Results;
 using PostMortem.Markdown;
 
