@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using PostMortem.Core.Export;
 using PostMortem.Core.Results;
 using PostMortem.Markdown;
@@ -11,14 +12,18 @@ namespace PostMortem.Core.Report
 {
     public class Reporter
     {
-        public void GenerateReport(AnalysisResult result, string outputDirectory)
+        public void GenerateAnalysisReport(AnalysisResult result, string outputDirectory)
         {
-            Log.Verbose("Generating report");
+            if (result == null) throw new ArgumentNullException(nameof(result));
+            if (string.IsNullOrWhiteSpace(outputDirectory))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(outputDirectory));
+
+            Log.Verbose("Generating analysis report");
 
             var document = new MarkdownDocument();
 
             // Title
-            document.WriteHeader1($"PostMortem Report for {result.GeneralInfo.DumpFileName.MakeInlineCode()}");
+            document.WriteHeader1($"PostMortem Analysis Report for {result.GeneralInfo.DumpFileName.MakeInlineCode()}");
             document.WriteParagraph($"Report generated: {DateTime.Now:F}");
 
             // General Info
@@ -147,8 +152,54 @@ namespace PostMortem.Core.Report
                 arg => arg.TotalSize.ToString("n0")
             );
 
-            // Export the shizzle
-            var path = Path.Combine(outputDirectory, $"{Guid.NewGuid():D}-report");
+            Export(outputDirectory, document, "analysis-report");
+        }
+
+        public void GenerateCompareReport(CompareResult result, string outputDirectory)
+        {
+            if (result == null) throw new ArgumentNullException(nameof(result));
+            if (string.IsNullOrWhiteSpace(outputDirectory))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(outputDirectory));
+
+            Log.Verbose("Generating compare report");
+
+            var document = new MarkdownDocument();
+
+            // Title
+            document.WriteHeader1($"PostMortem Compare Report for {result.GeneralInfos.OlderDump.DumpFileName.MakeInlineCode()} and {result.GeneralInfos.NewerDump.DumpFileName.MakeInlineCode()}");
+            document.WriteParagraph($"Report generated: {DateTime.Now:F}");
+
+            // General Info
+            document.WriteHeader2("General Information");
+            document.WriteParagraph($"Older Dump File Creation Time: {result.GeneralInfos.OlderDump.DumpFileCreationTime:F}");
+            document.WriteParagraph($"Older Dump File Path: {result.GeneralInfos.OlderDump.DumpFilePath.MakeInlineCode()}");
+            document.WriteParagraph($"Newer Dump File Creation Time: {result.GeneralInfos.NewerDump.DumpFileCreationTime:F}");
+            document.WriteParagraph($"Newer Dump File Path: {result.GeneralInfos.NewerDump.DumpFilePath.MakeInlineCode()}");
+
+            // Matching threads
+            document.WriteHeader2("Matching Threads");
+            foreach (var matchingThread in result.MatchingThreads)
+            {
+                if(!matchingThread.MatchingFrames?.Any() ?? true) continue;
+
+                var prefix = matchingThread.IsFullTraceMatch ? $"{MarkdownEmojis.Snowflake} " : null;
+                document.WriteHeader3($"{prefix} Thread {matchingThread.ThreadFromOlder.OsThreadId.ToString("x12").MakeInlineCode()}");
+
+                if (matchingThread.IsFullTraceMatch)
+                {
+                    document.WriteParagraph("Both stack traces seem to be equal".MakeMarked());
+                }
+
+                document.WriteHeader4("Matching stack frames");
+                WriteStackTraceTable(document, matchingThread.MatchingFrames);
+            }
+
+            Export(outputDirectory, document, "compare-report");
+        }
+
+        private static void Export(string outputDirectory, MarkdownDocument document, string suffix)
+        {
+            var path = Path.Combine(outputDirectory, $"{Guid.NewGuid():D}-{suffix}");
             new Exporter().ExportFile(document.GetString(), $"{path}.md");
             new Exporter().ExportHtml(document, $"{path}.html");
         }

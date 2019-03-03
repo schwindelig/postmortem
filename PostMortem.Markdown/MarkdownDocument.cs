@@ -14,6 +14,10 @@ namespace PostMortem.Markdown
         public const string Bomb = ":bomb:";
 
         public const string Boom = ":boom:";
+
+        public const string Snowflake = ":snowflake:";
+
+        public const string Warning = ":warning:";
     }
 
     public static class MarkdownStringExtensions

@@ -221,7 +221,7 @@ namespace PostMortem.Core.Analyse
                 {
                     stackFrameInfos.AddRange(thread.StackTrace.Select(GetStackFrameInfo));
                 }
-
+                
                 threadInfos.Add(new ThreadInfo
                 {
                     IsAlive = thread.IsAlive,

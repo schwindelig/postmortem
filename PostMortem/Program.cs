@@ -3,6 +3,7 @@ using System.IO;
 using CommandLine;
 using PostMortem.Core;
 using PostMortem.Core.Analyse;
+using PostMortem.Core.Compare;
 using PostMortem.Core.Report;
 using Serilog;
 using Serilog.Core;
@@ -28,7 +29,7 @@ namespace PostMortem
                         {
                             Path = options.Path
                         });
-                        new Reporter().GenerateReport(resultLeft,options.OutputDirectory);
+                        new Reporter().GenerateAnalysisReport(resultLeft,options.OutputDirectory);
 
                         if (!string.IsNullOrWhiteSpace(options.Path2))
                         {
@@ -36,6 +37,10 @@ namespace PostMortem
                             {
                                 Path = options.Path2
                             });
+                            new Reporter().GenerateAnalysisReport(resultRight, options.OutputDirectory);
+
+                            var compareResult = new Comparer().CompareResults(resultLeft, resultRight);
+                            new Reporter().GenerateCompareReport(compareResult, options.OutputDirectory);
                         }
 
                         //var targetPath = Path.Combine(options.OutputDirectory, $"{startTimeStamp}.json");
