@@ -10,20 +10,26 @@ The idea and analysing code is heavily inspired (if not just copy-pasted) from t
 
 Examples are based on memory dumps generated on the [aspnet-crash website](https://github.com/dougrathbone/aspnet-crash)
 
-### Hang (Worker Processes hanging in `Thread.Sleep`)
+### Hang
+
+Worker Processes hanging in `Thread.Sleep`
 
 - Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/hung-workers/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.html) | [Markdown](docs/example-reports/hung-workers/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.md)
 - Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/hung-workers/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.html) | [Markdown](docs/example-reports/hung-workers/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.md)
 - Compare Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/hung-workers/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.html) | [Markdown](docs/example-reports/hung-workers/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.md)
 
-### Crash (StackOverflow by recursion and creating thousands of `SomeData` instaces)
+### Crash
+
+`StackOverflowException` by recursion and creating thousands of `SomeData` instances
 
 - Analysis Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/stackoverflow/e397f00b-1516-4995-9e43-b2c456429871-analysis-report.html) | [Markdown](docs/example-reports/stackoverflow/e397f00b-1516-4995-9e43-b2c456429871-analysis-report.md)
 
-### Memory Leak (Caused by not disposing `MemoryStream`s and `XmlSerializer`s)
+### Memory Leak
 
-- Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/626456c3-6685-4828-bf75-2d3e16f64c5f-analysis-report.html) | [Markdown](docs/example-reports/memoryleak/626456c3-6685-4828-bf75-2d3e16f64c5f-analysis-report.md)
-- Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/abf0841f-11ad-4cf3-88c8-530c9af3c783-analysis-report.html) | [Markdown](docs/example-reports/memoryleak/abf0841f-11ad-4cf3-88c8-530c9af3c783-analysis-report.md)
+Caused by not disposing `MemoryStream`s and `XmlSerializer`s
+
+- Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/abf0841f-11ad-4cf3-88c8-530c9af3c783-analysis-report.html) | [Markdown](docs/example-reports/memoryleak/abf0841f-11ad-4cf3-88c8-530c9af3c783-analysis-report.md)
+- Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/626456c3-6685-4828-bf75-2d3e16f64c5f-analysis-report.html) | [Markdown](docs/example-reports/memoryleak/626456c3-6685-4828-bf75-2d3e16f64c5f-analysis-report.md)
 - Compare Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/memoryleak/8a25287f-1c1e-43a6-81d7-1f98a8e2c452-compare-report.html) | [Markdown](docs/example-reports/memoryleak/8a25287f-1c1e-43a6-81d7-1f98a8e2c452-compare-report.md)
 
 ## Libraries used
