@@ -133,7 +133,8 @@ namespace PostMortem.Core.Report
                 {
                     Type = infos.Key,
                     Count = infos.Count(),
-                    TotalSize = infos.Sum(info => (uint)info.Size)
+                    TotalSize = infos.Sum(info => (uint)info.Size),
+                    ImplementsIDisposable = infos.FirstOrDefault()?.ImplementsIDisposable
                 })
                 .OrderByDescending(arg => arg.TotalSize)
                 .Take(objectsToTake);
@@ -144,10 +145,12 @@ namespace PostMortem.Core.Report
                 new[]
                 {
                     "Type",
+                    "Implements IDisposable",
                     "Count",
                     "Total Size in bytes"
                 },
                 arg => (string.IsNullOrWhiteSpace(arg.Type) ? "UNKNOWN" : arg.Type).MakeInlineCode(),
+                arg => $"{arg.ImplementsIDisposable}{(arg.ImplementsIDisposable ?? false ? $" {MarkdownEmojis.Warning}" : string.Empty)}",
                 arg => arg.Count.ToString("n0"),
                 arg => arg.TotalSize.ToString("n0")
             );
@@ -201,9 +204,11 @@ namespace PostMortem.Core.Report
                 new []
                 {
                     "Type",
+                    "Implements IDisposable",
                     "Change"
                 },
                 info => info.ObjectInfo.TypeName.MakeInlineCode(),
+                info => $"{info.ObjectInfo.ImplementsIDisposable}{(info.ObjectInfo.ImplementsIDisposable ?? false ? $" {MarkdownEmojis.Warning}" : string.Empty)}",
                 info =>
                 {
                     var suffix = info.Difference > 0

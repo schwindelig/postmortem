@@ -37,6 +37,8 @@ namespace PostMortem.Core.Results
         public ulong Size { get; set; }
 
         public string TypeName { get; set; }
+
+        public bool? ImplementsIDisposable { get; set; }
     }
 
     public class HeapBalanceInfo

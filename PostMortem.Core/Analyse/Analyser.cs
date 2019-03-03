@@ -84,6 +84,7 @@ namespace PostMortem.Core.Analyse
             }
 
             var objectAddresses = runtime.Heap.EnumerateObjectAddresses();
+            var disposableInterfaceName = typeof(IDisposable).FullName;
             var objectInfos = objectAddresses
                 .Select(objectAddress =>
                 {
@@ -97,7 +98,8 @@ namespace PostMortem.Core.Analyse
                     return new ObjectInfo
                     {
                         TypeName = type.Name,
-                        Size = size
+                        Size = size,
+                        ImplementsIDisposable = type.Interfaces?.Any(i => i.Name.Equals(disposableInterfaceName))
                     };
                 })
                 .Where(arg => arg != null)
