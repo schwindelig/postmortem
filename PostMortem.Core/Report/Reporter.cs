@@ -207,9 +207,9 @@ namespace PostMortem.Core.Report
                 info =>
                 {
                     var suffix = info.Difference > 0
-                        ? $" {MarkdownEmojis.ArrowUpSmall} "
+                        ? $" {MarkdownEmojis.ArrowUpSmall}"
                         : null;
-                    return $"{info.Difference?.ToString("N0")}{suffix}";
+                    return $"{info.Difference?.ToString("+0;-#;0")}{suffix}";
                 });
 
             Export(outputDirectory, document, "compare-report");
