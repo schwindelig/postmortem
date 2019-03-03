@@ -6,9 +6,13 @@ The idea and analysing code is heavily inspired (if not just copy-pasted) from t
 
 ## Examples
 
-- Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.html) | [Markdown](docs/example-reports/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.md)
-- Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.html) | [Markdown](docs/example-reports/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.md)
-- Compare Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.html) | [Markdown](docs/example-reports/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.md)
+Examples are based on memory dumps generated on the [aspnet-crash website](https://github.com/dougrathbone/aspnet-crash)
+
+### Hang (Worker Processes hanging in `Thread.Sleep`)
+
+- Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/hung-workers/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.html) | [Markdown](docs/example-reports/hung-workers/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.md)
+- Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/hung-workers/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.html) | [Markdown](docs/example-reports/hung-workers/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.md)
+- Compare Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/hung-workers/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.html) | [Markdown](docs/example-reports/hung-workers/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.md)
 
 ## Libraries used
 
@@ -98,4 +102,16 @@ The analysis report provides the following information:
 
 ### Compare Report
 
-**TODO:** Describe all the shizzle here
+PostMortem allows you to compare two memory dumps. See the `--help` details, on which parameters to use.
+
+#### Matching Threads
+
+Displays threads where the thread id within both dumps matches.
+
+Matching stack traces are displayed in the table below. A visual indication (:snowflake:) is given when both stack traces seem to be equal.
+
+#### Object Count Diff
+
+Displays a list of the most common objects, order by the difference in instances between the two dumps.
+
+If a type directly implements `IDisposable` a visual indication (:warning:) is displayed in the `Implements IDisposable` column.
