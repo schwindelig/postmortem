@@ -47,7 +47,7 @@ namespace PostMortem.Core.Report
             document.WriteHeader2("Heap Segments");
             document.WriteTable(
                 result.HeapSegments,
-                new []
+                new[]
                 {
                     "Start",
                     "End",
@@ -68,7 +68,7 @@ namespace PostMortem.Core.Report
             document.WriteHeader2("Heap Balance");
             document.WriteTable(
                 result.HeapBalance,
-                new []
+                new[]
                 {
                     "Heap",
                     "Size in Bytes"
@@ -117,7 +117,31 @@ namespace PostMortem.Core.Report
                 );
             }
 
-            // More derp
+            // Objects
+            var topObjects = result.Objects
+                .GroupBy(o => o.TypeName)
+                .Select(infos => new
+                {
+                    Type = infos.Key,
+                    Count = infos.Count(),
+                    TotalSize = infos.Sum(info => (uint)info.Size)
+                })
+                .OrderByDescending(arg => arg.TotalSize)
+                .Take(100);
+
+            document.WriteHeader2("Top Objects");
+            document.WriteTable(
+                topObjects,
+                new[]
+                {
+                    "Type",
+                    "Count",
+                    "Total Size in bytes"
+                },
+                arg => arg.Type.MakeInlineCode(),
+                arg => arg.Count.ToString(),
+                arg => arg.TotalSize.ToString()
+            );
 
             // Export the shizzle
             var path = Path.Combine(outputDirectory, $"{Guid.NewGuid():D}-report.md");
