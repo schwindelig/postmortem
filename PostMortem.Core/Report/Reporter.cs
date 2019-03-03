@@ -18,13 +18,13 @@ namespace PostMortem.Core.Report
 
             // Runtime Info
             document.WriteHeader2("Runtime Info");
-            document.WriteTable<RuntimeInfo>(
-                result.RuntimeInfo, new []
+            document.WriteTable(
+                result.RuntimeInfo, new[]
                 {
                     "Pointer Size",
                     "Heap Count",
                     "Server Garbage Collector"
-                }, 
+                },
                 info => info.PointerSize.ToString(),
                 info => info.HeapCount.ToString(),
                 info => info.ServerGarbageCollector.ToString());
@@ -35,7 +35,38 @@ namespace PostMortem.Core.Report
             {
                 document.WriteHeader3(appDomain.Name);
                 document.WriteLine("Loaded Modules:");
-                document.WriteOrderedList(appDomain.Modules.OrderBy(s => s));
+                document.WriteOrderedList(appDomain.Modules.Where(s => !string.IsNullOrWhiteSpace(s)).OrderBy(s => s));
+            }
+
+            // Threads
+            document.WriteHeader2("Threads");
+            var totalThreads = result.Threads.Count();
+            var aliveThreads = result.Threads.Count(t => t.IsAlive);
+            document.WriteLine($"Total Threads: {totalThreads} (Alive: {aliveThreads})");
+            foreach (var threadInfo in result.Threads.Where(t => t.IsAlive))
+            {
+                document.WriteHeader3($"{threadInfo.OsThreadId,12:X}");
+                if (threadInfo.ExceptionInfo != null)
+                {
+                    document.WriteLine("Thread contains an exception");
+                    document.WriteHeader4("Exception info");
+                    document.WriteLine($"Message: {threadInfo.ExceptionInfo.Message}");
+                    document.WriteLine($"HRESULT: {threadInfo.ExceptionInfo.HResult}");
+                }
+
+                document.WriteHeader4("Stack Trace");
+                document.WriteTable(
+                    threadInfo.StackFrameInfos,
+                    new[]
+                    {
+                        "Stack Pointer",
+                        "Instruction Pointer",
+                        "Display String"
+                    },
+                    info => $"{info.StackPointer,12:X}".MakeInlineCode(),
+                    info => $"{info.InstructionPointer,12:X}".MakeInlineCode(),
+                    info => info.DisplayString.MakeInlineCode()
+                );
             }
 
             // More derp
