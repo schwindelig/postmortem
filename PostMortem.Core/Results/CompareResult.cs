@@ -7,6 +7,15 @@ namespace PostMortem.Core.Results
         public GeneralInfos GeneralInfos { get; set; }
 
         public IEnumerable<MatchingThread> MatchingThreads { get; set; }
+
+        public IEnumerable<ObjectCountDiffInfo> ObjectDiffs { get; set; }
+    }
+
+    public class ObjectCountDiffInfo
+    {
+        public ObjectInfo ObjectInfo { get; set; }
+
+        public int? Difference { get; set; }
     }
 
     public class GeneralInfos

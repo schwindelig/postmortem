@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using PostMortem.Core.Results;
 using Serilog;
 
@@ -16,7 +18,7 @@ namespace PostMortem.Core.Compare
             var olderDump = ordered.ElementAt(0);
             var newerDump = ordered.ElementAt(1);
 
-            // Look for new Exceptions
+            // TODO: Look for new Exceptions
 
             // Check for changes in objects count
 
@@ -27,10 +29,34 @@ namespace PostMortem.Core.Compare
                     OlderDump = olderDump.GeneralInfo,
                     NewerDump = newerDump.GeneralInfo,
                 },
-                MatchingThreads = GetMatchingThreads(olderDump, newerDump)
+                MatchingThreads = GetMatchingThreads(olderDump, newerDump),
+                ObjectDiffs = GetObjectCountDiffs(olderDump, newerDump)
             };
 
             return compareResult;
+        }
+
+        private static IEnumerable<ObjectCountDiffInfo> GetObjectCountDiffs(AnalysisResult olderDump, AnalysisResult newerDump)
+        {
+            Log.Verbose("Determine object count differences");
+
+            var groupsOlder = olderDump.Objects.GroupBy(o => o.TypeName);
+            var groupsNewer = newerDump.Objects.GroupBy(o => o.TypeName).ToList();
+
+            var objectCountDiffs = new ConcurrentBag<ObjectCountDiffInfo>();
+            
+            // ReSharper disable once LoopCanBeConvertedToQuery
+            Parallel.ForEach(groupsOlder, group =>
+            {
+                var match = groupsNewer.FirstOrDefault(g => g.Key == group.Key);
+                objectCountDiffs.Add(new ObjectCountDiffInfo
+                {
+                    ObjectInfo = group.FirstOrDefault(),
+                    Difference = match?.Count() - group.Count()
+                });
+            });
+
+            return objectCountDiffs;
         }
 
         private static IEnumerable<MatchingThread> GetMatchingThreads(AnalysisResult olderDump, AnalysisResult newerDump)

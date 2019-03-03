@@ -2,7 +2,7 @@
   "profiles": {
     "PostMortem": {
       "commandName": "Project",
-      "commandLineArgs": "-v -p C:\\Temp\\crash-analysis\\20190303_152212_Hang_Mode_HungWorker\\FULLDUMP_HangMode_w3wp.exe__8c9c_2019-03-03_15-22-13-270_9320.dmp -s C:\\Temp\\crash-analysis\\20190303_152218_Hang_Mode_HungWorker\\FULLDUMP_HangMode_w3wp.exe__9554_2019-03-03_15-22-18-755_9320.dmp -o C:\\Temp\\postmortem\\results"
+      "commandLineArgs": "-v -p C:\\Temp\\swt\\w3wp-1\\w3wp.dmp -s C:\\Temp\\swt\\w3wp-2\\w3wp.dmp -o C:\\Temp\\postmortem\\results"
     }
   }
 }

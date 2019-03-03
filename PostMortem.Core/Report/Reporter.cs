@@ -194,6 +194,24 @@ namespace PostMortem.Core.Report
                 WriteStackTraceTable(document, matchingThread.MatchingFrames);
             }
 
+            // Object Differences
+            document.WriteHeader2("Object Count Differences");
+            document.WriteTable(
+                result.ObjectDiffs.OrderByDescending(info => info.Difference).Take(1000),
+                new []
+                {
+                    "Type",
+                    "Change"
+                },
+                info => info.ObjectInfo.TypeName.MakeInlineCode(),
+                info =>
+                {
+                    var suffix = info.Difference > 0
+                        ? $" {MarkdownEmojis.ArrowUpSmall} "
+                        : null;
+                    return $"{info.Difference?.ToString("N0")}{suffix}";
+                });
+
             Export(outputDirectory, document, "compare-report");
         }
 

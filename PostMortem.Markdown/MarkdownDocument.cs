@@ -18,6 +18,12 @@ namespace PostMortem.Markdown
         public const string Snowflake = ":snowflake:";
 
         public const string Warning = ":warning:";
+
+        public const string ChartWithUpwardsTrend = ":chart_with_upwards_trend:";
+
+        public const string ChartWithDownwardsTrend = ":chart_with_downwards_trend:";
+
+        public const string ArrowUpSmall = ":arrow_up_small:";
     }
 
     public static class MarkdownStringExtensions
