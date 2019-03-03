@@ -1,6 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using Markdig;
 using Newtonsoft.Json;
 using PostMortem.Core.Exceptions;
+using PostMortem.Markdown;
 using Serilog;
 
 namespace PostMortem.Core.Analyse
@@ -9,6 +12,10 @@ namespace PostMortem.Core.Analyse
     {
         public void ExportJson(object data, string path)
         {
+            if (data == null) throw new ArgumentNullException(nameof(data));
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(path));
+
             Log.Verbose("Exporting data as JSON to {path}", path);
 
             if (File.Exists(path))
@@ -26,6 +33,11 @@ namespace PostMortem.Core.Analyse
 
         public void ExportFile(string data, string path)
         {
+            if (string.IsNullOrWhiteSpace(data))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(data));
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(path));
+
             Log.Verbose("Exporting data to {path}", path);
 
             if (File.Exists(path))
@@ -34,6 +46,26 @@ namespace PostMortem.Core.Analyse
             }
 
             File.WriteAllText(path, data);
+        }
+
+        public void ExportHtml(MarkdownDocument document, string path)
+        {
+            if (document == null) throw new ArgumentNullException(nameof(document));
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentException("Value cannot be null or whitespace.", nameof(path));
+
+            Log.Verbose($"Exporting markdown as HTML to {path}");
+
+            if (File.Exists(path))
+            {
+                throw new FileAlreadyExistsException($"File at {path} already exists");
+            }
+
+            var pipeline = new MarkdownPipelineBuilder()
+                .UseAdvancedExtensions()
+                .Build();
+            var html = Markdig.Markdown.ToHtml(document.GetString(), pipeline);
+            File.WriteAllText(path, html);
         }
     }
 }

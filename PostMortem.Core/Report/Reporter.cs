@@ -138,14 +138,15 @@ namespace PostMortem.Core.Report
                     "Count",
                     "Total Size in bytes"
                 },
-                arg => arg.Type.MakeInlineCode(),
+                arg => (string.IsNullOrWhiteSpace(arg.Type) ? "UNKNOWN" : arg.Type).MakeInlineCode(),
                 arg => arg.Count.ToString(),
-                arg => arg.TotalSize.ToString()
+                arg => arg.TotalSize.ToString("n0")
             );
 
             // Export the shizzle
-            var path = Path.Combine(outputDirectory, $"{Guid.NewGuid():D}-report.md");
-            new Exporter().ExportFile(document.GetString(), path);
+            var path = Path.Combine(outputDirectory, $"{Guid.NewGuid():D}-report");
+            new Exporter().ExportFile(document.GetString(), $"{path}.md");
+            new Exporter().ExportHtml(document, $"{path}.html");
         }
     }
 }
