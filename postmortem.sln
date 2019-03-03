@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostMortem.Core", "PostMort
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostMortem", "PostMortem\PostMortem.csproj", "{29CAA08C-F128-475C-820F-CEB8FC295C14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostMortem.Markdown", "PostMortem.Markdown\PostMortem.Markdown.csproj", "{3530FC40-A931-4E4D-9EED-C746DF92BAFB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostMortem.Markdown", "PostMortem.Markdown\PostMortem.Markdown.csproj", "{599C3242-2287-4625-AA39-07DCFDBC4314}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{29CAA08C-F128-475C-820F-CEB8FC295C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29CAA08C-F128-475C-820F-CEB8FC295C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29CAA08C-F128-475C-820F-CEB8FC295C14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3530FC40-A931-4E4D-9EED-C746DF92BAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3530FC40-A931-4E4D-9EED-C746DF92BAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3530FC40-A931-4E4D-9EED-C746DF92BAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3530FC40-A931-4E4D-9EED-C746DF92BAFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599C3242-2287-4625-AA39-07DCFDBC4314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599C3242-2287-4625-AA39-07DCFDBC4314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599C3242-2287-4625-AA39-07DCFDBC4314}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599C3242-2287-4625-AA39-07DCFDBC4314}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
