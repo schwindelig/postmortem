@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using PostMortem.Core.Analyse;
 using PostMortem.Core.Export;
 using PostMortem.Core.Results;
 using PostMortem.Markdown;
@@ -16,12 +16,12 @@ namespace PostMortem.Core.Report
 
             // Title
             document.WriteHeader1($"PostMortem Report for {result.GeneralInfo.DumpFileName.MakeInlineCode()}");
-            document.WriteLine($"Report generated: {DateTime.Now:F}");
+            document.WriteParagraph($"Report generated: {DateTime.Now:F}");
 
             // General Info
             document.WriteHeader2("General Information");
-            document.WriteLine($"Dump File Creation Time: {result.GeneralInfo.DumpFileCreationTime:F}{Environment.NewLine}");
-            document.WriteLine($"Dump File Path: {result.GeneralInfo.DumpFilePath.MakeInlineCode()}");
+            document.WriteParagraph($"Dump File Creation Time: {result.GeneralInfo.DumpFileCreationTime:F}");
+            document.WriteParagraph($"Dump File Path: {result.GeneralInfo.DumpFilePath.MakeInlineCode()}");
 
             // Runtime Info
             document.WriteHeader2("Runtime Info");
@@ -89,7 +89,7 @@ namespace PostMortem.Core.Report
             foreach (var appDomain in result.AppDomains)
             {
                 document.WriteHeader3(appDomain.Name);
-                document.WriteLine("Loaded Modules:");
+                document.WriteParagraph("Loaded Modules:");
                 document.WriteOrderedList(appDomain.Modules.Where(s => !string.IsNullOrWhiteSpace(s)).OrderBy(s => s));
             }
 
@@ -97,31 +97,24 @@ namespace PostMortem.Core.Report
             document.WriteHeader2("Threads");
             var totalThreads = result.Threads.Count();
             var aliveThreads = result.Threads.Count(t => t.IsAlive);
-            document.WriteLine($"Total Threads: {totalThreads} (Alive: {aliveThreads})");
+            document.WriteParagraph($"Total Threads: {totalThreads} (Alive: {aliveThreads})");
             foreach (var threadInfo in result.Threads.Where(t => t.IsAlive))
             {
-                document.WriteHeader3($"{threadInfo.OsThreadId,12:X}");
+                var prefix = threadInfo.ExceptionInfo != null ? $"{MarkdownEmojis.Fire} " : null;
+                document.WriteHeader3($"{prefix}Thread {threadInfo.OsThreadId.ToString("x12").MakeInlineCode()}");
                 if (threadInfo.ExceptionInfo != null)
                 {
-                    document.WriteLine("Thread contains an exception");
+                    document.WriteParagraph("Thread contains an exception".MakeMarked());
+
                     document.WriteHeader4("Exception info");
-                    document.WriteLine($"Message: {threadInfo.ExceptionInfo.Message}");
-                    document.WriteLine($"HRESULT: {threadInfo.ExceptionInfo.HResult}");
+                    document.WriteParagraph($"Type: {threadInfo.ExceptionInfo.Type}");
+                    document.WriteParagraph($"Message: {threadInfo.ExceptionInfo.Message}");
+                    document.WriteParagraph($"HRESULT: {threadInfo.ExceptionInfo.HResult}");
+                    WriteStackTraceTable(document, threadInfo.ExceptionInfo.StackFrameInfos);
                 }
 
                 document.WriteHeader4("Stack Trace");
-                document.WriteTable(
-                    threadInfo.StackFrameInfos,
-                    new[]
-                    {
-                        "Stack Pointer",
-                        "Instruction Pointer",
-                        "Display String"
-                    },
-                    info => $"{info.StackPointer,12:X}".MakeInlineCode(),
-                    info => $"{info.InstructionPointer,12:X}".MakeInlineCode(),
-                    info => info.DisplayString.MakeInlineCode()
-                );
+                WriteStackTraceTable(document, threadInfo.StackFrameInfos);
             }
 
             // Objects
@@ -155,6 +148,22 @@ namespace PostMortem.Core.Report
             var path = Path.Combine(outputDirectory, $"{Guid.NewGuid():D}-report");
             new Exporter().ExportFile(document.GetString(), $"{path}.md");
             new Exporter().ExportHtml(document, $"{path}.html");
+        }
+
+        private static void WriteStackTraceTable(MarkdownDocument document, IEnumerable<StackFrameInfo> frames)
+        {
+            document.WriteTable(
+                frames,
+                new[]
+                {
+                    "Stack Pointer",
+                    "Instruction Pointer",
+                    "Display String"
+                },
+                info => $"{info.StackPointer,12:X}".MakeInlineCode(),
+                info => $"{info.InstructionPointer,12:X}".MakeInlineCode(),
+                info => info.DisplayString.MakeInlineCode()
+            );
         }
     }
 }

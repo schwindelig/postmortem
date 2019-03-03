@@ -84,6 +84,10 @@ namespace PostMortem.Core.Results
         public string Message { get; set; }
 
         public int HResult { get; set; }
+
+        public string Type { get; set; }
+
+        public IEnumerable<StackFrameInfo> StackFrameInfos { get; set; }
     }
 
     public class ThreadInfo

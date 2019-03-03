@@ -64,6 +64,7 @@ namespace PostMortem.Core.Export
             var pipeline = new MarkdownPipelineBuilder()
                 .UseAdvancedExtensions()
                 .UseBootstrap()
+                .UseEmojiAndSmiley()
                 .Build();
 
             var bodyHtml = Markdig.Markdown.ToHtml(document.GetString(), pipeline);

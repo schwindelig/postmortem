@@ -209,21 +209,17 @@ namespace PostMortem.Core.Analyse
                 {
                     exceptionInfo = new ExceptionInfo
                     {
+                        Type = exception.Type.Name,
                         Message = exception.Message,
-                        HResult = exception.HResult
+                        HResult = exception.HResult,
+                        StackFrameInfos = exception.StackTrace.Select(GetStackFrameInfo).ToList()
                     };
                 }
 
                 var stackFrameInfos = new List<StackFrameInfo>();
                 if (thread.IsAlive)
                 {
-                    stackFrameInfos.AddRange(thread.StackTrace.Select(frame =>
-                        new StackFrameInfo
-                        {
-                            StackPointer = frame.StackPointer,
-                            InstructionPointer = frame.InstructionPointer,
-                            DisplayString = frame.DisplayString
-                        }));
+                    stackFrameInfos.AddRange(thread.StackTrace.Select(GetStackFrameInfo));
                 }
 
                 threadInfos.Add(new ThreadInfo
@@ -236,6 +232,17 @@ namespace PostMortem.Core.Analyse
             }
 
             return threadInfos;
+        }
+
+        private static StackFrameInfo GetStackFrameInfo(ClrStackFrame frame)
+        {
+            return
+                new StackFrameInfo
+                {
+                    StackPointer = frame.StackPointer,
+                    InstructionPointer = frame.InstructionPointer,
+                    DisplayString = frame.DisplayString
+                };
         }
 
         private static void DumpStack(ClrRuntime runtime, ClrThread thread)

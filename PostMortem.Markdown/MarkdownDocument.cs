@@ -5,6 +5,17 @@ using System.Text;
 
 namespace PostMortem.Markdown
 {
+    public static class MarkdownEmojis
+    {
+        // See https://github.com/lunet-io/markdig/blob/master/src/Markdig/Extensions/Emoji/EmojiParser.cs for a list of available emojis
+
+        public const string Fire = ":fire:";
+
+        public const string Bomb = ":bomb:";
+
+        public const string Boom = ":boom:";
+    }
+
     public static class MarkdownStringExtensions
     {
         public static string MakeEmphasis(this string content) => $"*{content}*";
@@ -19,6 +30,10 @@ namespace PostMortem.Markdown
 
         public static string MakeCodeBlock(this string content, string language) =>
             $"```{language}{Environment.NewLine}{content}{Environment.NewLine}```";
+
+        public static string MakeMarked(this string content) => $"=={content}==";
+
+        public static string MakeInserted(this string content) => $"++{content}++";
     }
 
     public class MarkdownDocument
@@ -31,7 +46,7 @@ namespace PostMortem.Markdown
         }
 
         // Text
-        public virtual void WriteLine(string content) => this.Document.AppendLine(content);
+        public virtual void WriteParagraph(string content) => this.Document.AppendLine($"{content}{Environment.NewLine}");
         public virtual void Write(string content) => this.Document.Append(content);
 
         // Headers
