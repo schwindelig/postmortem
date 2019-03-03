@@ -6,9 +6,9 @@ The idea and analysing code is heavily inspired (if not just copy-pasted) from t
 
 ## Examples
 
-- Analysis Report 1 [HTML](docs/example-reports/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.html) | [Markdown](docs/example-reports/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.md)
-- Analysis Report 2 [HTML](docs/example-reports/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.html) | [Markdown](docs/example-reports/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.md)
-- Compare Report [HTML](docs/exmaple-reports/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.html) | [Markdown](docs/example-reports/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.md)
+- Analysis Report 1 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.html) | [Markdown](docs/example-reports/f4786bf0-a9f0-4e08-b207-e06c5d50b316-analysis-report.md)
+- Analysis Report 2 [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.html) | [Markdown](docs/example-reports/1216b609-3c4a-4dba-9515-9a156e99a1f6-analysis-report.md)
+- Compare Report [HTML](https://htmlpreview.github.io/?https://github.com/schwindelig/postmortem/blob/master/docs/example-reports/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.html) | [Markdown](docs/example-reports/8c48119f-5303-48ea-91aa-1b6cf809d5ef-compare-report.md)
 
 ## Libraries used
 
