@@ -44,7 +44,7 @@ Caused by not disposing `MemoryStream`s and `XmlSerializer`s
 
 ## Usage
 
-Clone this repository and publish it. In the published directory, run
+Clone this repository, run `dotnet restore` and publish it. In the published directory, run
 ```bash
 dotnet .\PostMortem.dll
 ```
